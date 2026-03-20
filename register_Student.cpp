@@ -77,6 +77,5 @@ int login_menu()
          cout<<"Your password is not valid, please enter again: ";
          cin>>ps;
     }
-
     return 0;
 }
