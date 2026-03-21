@@ -3,6 +3,8 @@
 #include <cctype>
 #include <cstdlib>
 #include <limits>
+#include "system.h"
+
 using namespace std;
 
 
@@ -11,8 +13,8 @@ int login_menu();
 int register_menu();
 int reset_password();
 
-int main (){
-    
+void studentAuth_menu()
+{
     int answer, fpassword;
     answer = login_register();
 
@@ -38,7 +40,6 @@ int main (){
         }
     }
 
-    return 0;
 }
 
 int login_register()
@@ -69,8 +70,9 @@ int login_menu()
     do{
         cout <<"Student ID: \n";
         getline(cin, id);
-        if(id.empty()) cout <<"ID cannot be empty, please enter again: ";
         
+        if(id.empty()) cout <<"ID cannot be empty, please enter again: ";
+
     }while(id.length() != 7 || id.empty());
         cout <<"Your ID is not valid, please enter again: ";
         cin >>id;
