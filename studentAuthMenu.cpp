@@ -46,13 +46,13 @@ int login_register()
 {
     int choice;
 
-    cout <<"---------------------- \n";
-    cout <<"| Student       Menu | \n";
-    cout <<"----------------------"<<endl;
+    cout <<"--------------------- \n";
+    cout <<"| Student      Menu | \n";
+    cout <<"---------------------"<<endl;
 
     cout <<"--------------------- \n";
-    cout <<"| Register Menu (1) |\n";
-    cout <<"| Login    Menu (2) |\n";
+    cout <<"| 1. Register Menu  |\n";
+    cout <<"| 2. Login    Menu  | \n";
     cout <<"--------------------- \n";
 
     cin>>choice;
@@ -62,9 +62,9 @@ int login_register()
 
 int login_menu()
 {
-    cout <<"------------------- \n";
-    cout <<"| Login      Menu | \n";
-    cout <<"-------------------"<<endl;
+    cout <<"--------------------- \n";
+    cout <<"| Login        Menu | \n";
+    cout <<"---------------------"<<endl;
 
     string id, ps;
     do{
