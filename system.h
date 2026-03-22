@@ -1,7 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-void studentAuthMenu();
-void adminMenu();
+void studentAuth_menu();
+void admin_menu();
 
 #endif

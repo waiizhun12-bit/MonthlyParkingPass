@@ -24,10 +24,12 @@ void main_menu()
     cout <<"Enter your choice: \n";
     cin >> choice;
 
-    if (choice == 2)
+    if (choice == 1)
     {
-        studentAuthMenu();
-    }else{
-        adminMenu();
+        admin_menu();
+    }
+    else if (choice == 2)
+    {
+        studentAuth_menu();
     }
 }
