@@ -46,14 +46,12 @@ int login_register()
 {
     int choice;
 
-    cout <<"--------------------- \n";
-    cout <<"| Student      Menu | \n";
     cout <<"---------------------"<<endl;
-
-    cout <<"--------------------- \n";
-    cout <<"| 1. Register Menu  |\n";
-    cout <<"| 2. Login    Menu  | \n";
-    cout <<"--------------------- \n";
+    cout <<"| Student      Menu |"<<endl;
+    cout <<"---------------------"<<endl;
+    cout <<"- 1. Register Menu  -"<<endl;
+    cout <<"- 2. Login    Menu  -"<<endl;
+    cout <<"---------------------"<<endl;
 
     cin>>choice;
 
@@ -62,8 +60,8 @@ int login_register()
 
 int login_menu()
 {
-    cout <<"--------------------- \n";
-    cout <<"| Login        Menu | \n";
+    cout <<"---------------------"<<endl;
+    cout <<"| Login        Menu |"<<endl;
     cout <<"---------------------"<<endl;
 
     string id, ps;
@@ -92,8 +90,8 @@ int register_menu()
     int faculty_choice;
     string name, password, faculty, email, vehicle_plate, vehicle_type, student_id;
 
-    cout <<"------------------- \n";
-    cout <<"| Register   Menu | \n";
+    cout <<"-------------------"<<endl;
+    cout <<"| Register   Menu |"<<endl;
     cout <<"-------------------"<< endl;
 
     //StudentID
