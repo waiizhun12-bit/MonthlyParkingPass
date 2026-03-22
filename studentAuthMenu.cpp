@@ -60,29 +60,39 @@ int login_register()
 
 int login_menu()
 {
+    
+    // Clear the buffer from the previous menu
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
     cout <<"---------------------"<<endl;
     cout <<"| Login        Menu |"<<endl;
     cout <<"---------------------"<<endl;
 
     string id, ps;
-    do{
+    while(true) {
         cout <<"Student ID: \n";
         getline(cin, id);
         
-        if(id.empty()) cout <<"ID cannot be empty, please enter again: ";
+        if(id.empty()) {
+            cout <<"ID cannot be empty, please enter again: "<<endl;
+        }else if(id.length() != 7) {
+            cout <<"ID must be 7 characters long, please enter again: "<<endl;
+        }else {
+            break;
+        }    
+    }
 
-    }while(id.length() != 7 || id.empty());
-        cout <<"Your ID is not valid, please enter again: ";
-        cin >>id;
+    while(true) {
+        cout <<"Password: ";
+        getline(cin, ps);
+        
+        if(ps.length() >= 6 && ps.length() <= 20) {
+            break;
+        }
+            cout <<"Password must be between 6 and 20 characters, please enter again: "<<endl;
+    }
 
-    do{
-        cout <<"Password  : \n";
-        getline(cin, ps);     
-    }while (ps.length() <= 5 || ps.length() >= 20);
-         cout <<"Password should be between 6 and 20 characters, please enter again: ";
-         cin >>ps;
-
-         return 0;
+    return 0;
 }
 
 int register_menu()
@@ -104,9 +114,6 @@ int register_menu()
         }
         cout <<"Invalid! Must start with 21-25 and be 7 digits long.\n";
     }
-
-    // Clear the buffer to allow getline to work correctly after cin >>
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     //Name
     do {

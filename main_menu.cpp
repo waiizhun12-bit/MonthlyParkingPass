@@ -24,12 +24,14 @@ void main_menu()
     cout <<"Enter your choice: \n";
     cin >> choice;
 
-    if (choice == 1)
-    {
-        admin_menu();
-    }
-    else if (choice == 2)
-    {
-        studentAuth_menu();
+    switch (choice) {
+        case 1:
+            admin_menu(); 
+            break;
+        case 2:
+            studentAuth_menu(); 
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
     }
 }

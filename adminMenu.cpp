@@ -3,7 +3,7 @@ using namespace std;
 
 void admin_dashboard();
 
-void adminMenu()
+void admin_menu()
 {
    admin_dashboard();
 }
