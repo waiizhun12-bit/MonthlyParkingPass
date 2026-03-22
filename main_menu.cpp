@@ -26,6 +26,8 @@ void main_menu()
 
     if (choice == 2)
     {
-        studentAuth_menu();
+        studentAuthMenu();
+    }else{
+        adminMenu();
     }
 }
