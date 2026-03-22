@@ -42,6 +42,7 @@ void list_pending_applications()
         string status; // Pending, Approved, Rejected
     };
 
+    //temporary data for testing list pending application, need to replace with actual data from text file
     Application applist[4] = {
         {"S12345", "Alice Johnson", "Pending"},
         {"S67890", "Bob Smith", "Pending"},
