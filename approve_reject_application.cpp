@@ -1,46 +1,71 @@
 #include <iostream>
+#include <string>
+#include <iomanip>
 #include "system.h"
 
 using namespace std;
 
-void list_pending_applications(){
+int listPendingApps();
+int approveRejectApps();
 
-    struct Application {
+
+// global variable for testing, need to replace with actual data from text file
+struct Application {
         string studentID;
         string studentName;
         string status; // Pending, Approved, Rejected
-    };
+};
 
-    //temporary data for testing list pending application, need to replace with actual data from text file
-    Application applist[4] = {
+//temporary data for testing list pending application, need to replace with actual data from text file
+Application applist[4] = {
         {"S12345", "Alice Johnson", "Pending"},
         {"S67890", "Bob Smith", "Pending"},
         {"S54321", "Charlie Brown", "Approved"},
         {"S98765", "Diana Prince", "Rejected"}
-    };
+};
 
-    cout <<"------------------------------------------------------"<<endl;
-    cout <<"-               List PENDING APPLICATIONS            -"<<endl;
-    cout <<"------------------------------------------------------"<<endl;
-    cout <<"|   Student ID   |     Student Name     |   Status   |"<<endl;
-    cout <<"------------------------------------------------------"<<endl;
+void list_pending_applications(){
 
-    bool haspending = false;
+    listPendingApps();
+   
+}
 
-    for (int i = 0; i < 4; i++){
+int listPendingApps(){
+
+    int appCount = 4;
+    
+    cout <<"---------------------------------------------------------------"<<endl;
+    cout <<"-                   List PENDING APPLICATIONS                 -"<<endl;
+    cout <<"---------------------------------------------------------------"<<endl;
+    cout <<"|   App No.   |   Student ID   |   Student Name   |   Status  |"<<endl;
+    cout <<"---------------------------------------------------------------"<<endl;
+
+    bool has_pending = false;
+    int appNo = 1;
+
+    for (int i = 0; i < appCount; i++){
         if (applist[i].status == "Pending")
-        {
-            cout <<"|   " <<applist[i].studentID 
-                 <<"   |   " <<applist[i].studentName;
+        {   
+            has_pending = true;
 
-        if (applist[i].studentName.length() < 20) cout <<"\t";
-
-            cout <<"   |   " <<applist[i].status <<"   |"<<endl;
+            cout <<"| " << setw(10) << left << appNo 
+                 << "  | " << setw(14) << left << applist[i].studentID 
+                 << " | " << setw(16) << left << applist[i].studentName 
+                 << " | " << setw(9) << left << applist[i].status 
+                 << " |" << endl;
+            appNo++;
         }
-        haspending = true;
     }
 
-    if (!haspending){
+    if (!has_pending){
         cout <<"No pending applications found." <<endl;
     }
+
+    return 0;       
+}
+
+int approveRejectApps(){
+    
+
+    return 0;
 }
