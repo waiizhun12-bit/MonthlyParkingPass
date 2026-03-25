@@ -12,23 +12,21 @@ int main ()
 void main_menu()
 {
     int choice;
-    cout <<"---------------------------------\n";
-    cout <<"|  MONTHLY PARKING PASS SYSTEM  | \n";
+    cout <<"---------------------------------"<<endl;
+    cout <<"|  MONTHLY PARKING PASS SYSTEM  |"<<endl;
     cout <<"---------------------------------"<<endl;
 
-    cout <<" 1. Admin Module                - \n";
-    cout <<" 2. Student Module              - \n";
-    cout <<" 0. Exit / Shutdown             - \n";
-    cout <<"---------------------------------\n";
+    cout <<" 1. Admin Module                -"<<endl;
+    cout <<" 2. Student Module              -"<<endl;
+    cout <<" 0. Exit / Shutdown             -"<<endl;
+    cout <<"---------------------------------" <<endl;
 
     cout <<"Enter your choice: \n";
     cin >> choice;
 
     switch (choice) {
         case 1:
-            admin_menu(); 1
-            if(choice == 1) list_pending_applications();
-            else if(choice == 2) approve_reject_application();
+            admin_menu(); 
             break;
         case 2:
             studentAuth_menu(); 

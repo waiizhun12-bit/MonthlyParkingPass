@@ -8,10 +8,20 @@ void admin_menu()
 {
     int selection;
     selection = admin_dashboard();
+
+    switch (selection)
+    {
+    case 1:
+        list_pending_applications();
+        break;
+
+    default:
+        break;
+    }
 }
 int admin_dashboard()
 { 
-    int choice;
+    int choose;
 
     cout <<"---------------------------------------"<<endl;
     cout <<"-           ADMIN   DASHBOARD         -"<<endl;
@@ -25,6 +35,6 @@ int admin_dashboard()
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";
 
-    cin >>choice;
-    return choice;
+    cin >>choose;
+    return choose;
 }
