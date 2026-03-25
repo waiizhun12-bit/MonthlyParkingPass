@@ -65,7 +65,10 @@ int listPendingApps(){
 }
 
 int approveRejectApps(){
-    
+    int sid;
+    cout << "Enter Student ID: ";
+    cin >> sid;
 
+    for (int i = 0; i < a < app)
     return 0;
 }
