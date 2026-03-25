@@ -26,7 +26,9 @@ void main_menu()
 
     switch (choice) {
         case 1:
-            admin_menu(); 
+            admin_menu(); 1
+            if(choice == 1) list_pending_applications();
+            else if(choice == 2) approve_reject_application();
             break;
         case 2:
             studentAuth_menu(); 
