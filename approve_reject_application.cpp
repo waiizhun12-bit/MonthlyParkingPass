@@ -1,59 +1,65 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cctype>
 #include "system.h"
 
 using namespace std;
 
-int listPendingApps();
-int approveRejectApps();
-
-
 // global variable for testing, need to replace with actual data from text file
 struct Application {
+        string appNo;
         string studentID;
         string studentName;
         string status; // Pending, Approved, Rejected
 };
 
+
+int appCount = 4; //State the number of applications in the system, need to replace a maximum number of students
+int appNo = 0; //State the application number, need to replace with actual data from text file
+
 //temporary data for testing list pending application, need to replace with actual data from text file
 Application applist[4] = {
-        {"S12345", "Alice Johnson", "Pending"},
-        {"S67890", "Bob Smith", "Pending"},
-        {"S54321", "Charlie Brown", "Approved"},
-        {"S98765", "Diana Prince", "Rejected"}
+        {to_string(appNo), "2404544", "Alice Johnson", "Pending"},
+        {to_string(++appNo), "2404545", "Bob Smith", "Pending"},
+        {to_string(++appNo), "2404546", "Charlie Brown", "Approved"},
+        {to_string(++appNo), "2404547", "Diana Prince", "Rejected"}
 };
+
+int listPendingApps();
+int approveRejectApps();
 
 void list_pending_applications(){
 
     listPendingApps();
+    approveRejectApps();
    
 }
 
 int listPendingApps(){
-
-    int appCount = 4;
     
     cout <<"---------------------------------------------------------------"<<endl;
     cout <<"-                   List PENDING APPLICATIONS                 -"<<endl;
     cout <<"---------------------------------------------------------------"<<endl;
-    cout <<"|   App No.   |   Student ID   |   Student Name   |   Status  |"<<endl;
+    cout <<"| " << setw(10) << left << "App No" 
+         << " | " << setw(14) << left << "Student ID" 
+         << " | " << setw(16) << left << "Student Name" 
+         << " | " << setw(10) << left << "Status" 
+         << " |" << endl;
     cout <<"---------------------------------------------------------------"<<endl;
 
     bool has_pending = false;
-    int appNo = 1;
 
     for (int i = 0; i < appCount; i++){
         if (applist[i].status == "Pending")
         {   
             has_pending = true;
 
-            cout <<"| " << setw(10) << left << appNo 
-                 << "  | " << setw(14) << left << applist[i].studentID 
+            cout <<"| " << setw(10) << left << applist[i].appNo 
+                 << " | " << setw(14) << left << applist[i].studentID 
                  << " | " << setw(16) << left << applist[i].studentName 
-                 << " | " << setw(9) << left << applist[i].status 
+                 << " | " << setw(10) << left << applist[i].status 
                  << " |" << endl;
-            appNo++;
         }
     }
 
@@ -63,12 +69,49 @@ int listPendingApps(){
 
     return 0;       
 }
-
 int approveRejectApps(){
-    int sid;
-    cout << "Enter Student ID: ";
+    string sid;
+    cout << "Enter Student ID to approve/reject application: " << endl;
     cin >> sid;
 
-    for (int i = 0; i < a < app)
+    //add validation for student ID format (7 digits, starts with 21-25)
+
+    int pendingAmount[appCount];
+    int pendingCount = 0;
+
+    for (int i = 0; i < appCount; i++){
+        if (applist[i].studentID == sid  && applist[i].status == "Pending")
+        {
+            pendingAmount[pendingCount] = i;
+            pendingCount++;
+        }
+    }
+
+    if (pendingCount == 0){
+        cout << "No pending applications found for Student ID " << sid << endl;
+        return 0;
+    }
+
+    int pilih;
+    cout << "1. Approve "<<endl;
+    cout << "2. Reject "<<endl;
+    cout << "3. Cancel "<<endl;
+    cout << "Enter your choice: " << endl; 
+    cin >> pilih;
+
+    switch (pilih){
+        case 1:
+            applist[pendingAmount[0]].status = "Approved";
+            cout << "Application approved for Student ID " << sid << "." << endl;
+            break;
+
+        case 2:
+            applist[pendingAmount[0]].status = "Rejected";
+            cout << "Application rejected for Student ID " << sid << "." << endl;
+            break;
+        
+        default:
+            cout << "Cancelled.";    
+        }
     return 0;
 }

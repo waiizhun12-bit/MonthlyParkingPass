@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "system.h"
 using namespace std;
 
@@ -26,12 +27,11 @@ int admin_dashboard()
     cout <<"---------------------------------------"<<endl;
     cout <<"-           ADMIN   DASHBOARD         -"<<endl;
     cout <<"---------------------------------------"<<endl;
-    cout <<"- 1. List Pending Applications        -"<<endl;
-    cout <<"- 2. Approve / Reject Applications    -"<<endl;
-    cout <<"- 3. Generate Monthly Report          -"<<endl;
-    cout <<"- 4. View Month-End Alerts            -"<<endl;
-    cout <<"- 5. Manage Students                  -"<<endl;
-    cout <<"- 6. Logout                           -"<<endl;
+    cout <<setw(30) << left << "- 1. Approve & Reject Applications    -"<<endl;
+    cout <<setw(30) << left << "- 2. Generate Monthly Report          -"<<endl;
+    cout <<setw(30) << left << "- 3. View Application Statistics      -"<<endl;
+    cout <<setw(30) << left << "- 4. Manage Users                     -"<<endl;
+    cout <<setw(30) << left << "- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";
 
