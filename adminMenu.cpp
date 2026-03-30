@@ -30,7 +30,7 @@ int admin_dashboard()
     cout <<setw(30) << left << "- 1. Approve & Reject Applications    -"<<endl;
     cout <<setw(30) << left << "- 2. Generate Monthly Report          -"<<endl;
     cout <<setw(30) << left << "- 3. View Application Statistics      -"<<endl;
-    cout <<setw(30) << left << "- 4. Manage Users                     -"<<endl;
+    cout <<setw(30) << left << "- 4. Manage Students                  -"<<endl;
     cout <<setw(30) << left << "- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";
