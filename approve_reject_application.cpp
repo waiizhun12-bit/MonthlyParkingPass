@@ -39,7 +39,7 @@ void list_pending_applications(){
 int listPendingApps(){
     
     cout <<"---------------------------------------------------------------"<<endl;
-    cout <<"-                   List PENDING APPLICATIONS                 -"<<endl;
+    cout <<"-                   LIST PENDING APPLICATIONS                 -"<<endl;
     cout <<"---------------------------------------------------------------"<<endl;
     cout <<"| " << setw(10) << left << "App No" 
          << " | " << setw(14) << left << "Student ID" 
@@ -71,10 +71,17 @@ int listPendingApps(){
 }
 int approveRejectApps(){
     string sid;
-    cout << "Enter Student ID to approve/reject application: " << endl;
-    cin >> sid;
 
-    //add validation for student ID format (7 digits, starts with 21-25)
+    //validation for student ID format (7 digits, starts with 21-25)
+    while (true) {
+        cout <<"Student ID (e.g., 2101234): ";
+        cin >> sid;
+        if (sid.length() == 7) {
+            string prefix = sid.substr(0, 2);
+            if (prefix >= "21" && prefix <= "25") break;
+        }
+        cout <<"Invalid! Please enter student ID that same as the List pending applications\n";
+    }
 
     int pendingAmount[appCount];
     int pendingCount = 0;
@@ -95,10 +102,10 @@ int approveRejectApps(){
     int pilih;
     cout << "1. Approve "<<endl;
     cout << "2. Reject "<<endl;
-    cout << "3. Cancel "<<endl;
+    cout << "3. Back "<<endl;
     cout << "Enter your choice: " << endl; 
     cin >> pilih;
-
+    
     switch (pilih){
         case 1:
             applist[pendingAmount[0]].status = "Approved";
@@ -111,7 +118,9 @@ int approveRejectApps(){
             break;
         
         default:
-            cout << "Cancelled.";    
+            cout << "Back to main menu.";
+            admin_menu();    
         }
+    
     return 0;
 }

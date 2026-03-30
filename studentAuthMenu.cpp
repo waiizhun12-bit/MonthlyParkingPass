@@ -118,7 +118,7 @@ int register_menu()
     //Name
     do {
         cout <<"Name          : ";
-        getline(cin, name);
+        cin >>name;
         if (name.empty()) cout <<"Name cannot be empty!\n";
     } while (name.empty());
 
