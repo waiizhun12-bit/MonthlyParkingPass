@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
+#include <sstream>
 #include <cctype>
 #include "system.h"
 
@@ -14,18 +16,13 @@ struct Application {
         string status; // Pending, Approved, Rejected
 };
 
+const int MAX_STUDENT = 100;
+Application applist[MAX_STUDENT];;
+int appCount = 0;
+int appNO = 0;
 
-int appCount = 4; //State the number of applications in the system, need to replace a maximum number of students
-int appNo = 0; //State the application number, need to replace with actual data from text file
-
-//temporary data for testing list pending application, need to replace with actual data from text file
-Application applist[4] = {
-        {to_string(appNo), "2404544", "Alice Johnson", "Pending"},
-        {to_string(++appNo), "2404545", "Bob Smith", "Pending"},
-        {to_string(++appNo), "2404546", "Charlie Brown", "Approved"},
-        {to_string(++appNo), "2404547", "Diana Prince", "Rejected"}
-};
-
+void saveFile();
+void loadFile();
 int listPendingApps();
 int approveRejectApps();
 
@@ -34,6 +31,13 @@ void list_pending_applications(){
     listPendingApps();
     approveRejectApps();
    
+}
+
+void saveFile() {
+    fstream myFile;
+    myFile.open("students.txt");
+
+    myFile.close();
 }
 
 int listPendingApps(){
