@@ -28,16 +28,50 @@ int approveRejectApps();
 
 void list_pending_applications(){
 
+    loadFile();
+    saveFile();
     listPendingApps();
     approveRejectApps();
    
 }
 
 void saveFile() {
-    fstream myFile;
-    myFile.open("students.txt");
+    ofstream outFile("students.txt");
+    if (!outFile.is_open()) return; 
 
-    myFile.close();
+    for (int i = 0; i < appCount; i++) {
+        outFile << applist[i].appNo << ","
+                << applist[i].studentID << ","
+                << applist[i].studentName << ","
+                << applist[i].status << endl;
+    }
+    outFile.close();
+}
+
+void loadFile() {
+    ifstream inFile("students.txt");
+    if (!inFile.is_open()) return;
+
+    string line;
+    appCount = 0;
+
+    while (getline(inFile, line) && appCount < MAX_STUDENT){
+        stringstream cc(line); // use stringstream to split the data.
+
+        getline(cc, applist[appCount].appNo, ',');
+        getline(cc, applist[appCount].studentID, ',');
+        getline(cc, applist[appCount].studentName, ',');
+        getline(cc, applist[appCount].status, ',');
+
+        // Avoid new registration overlap.
+        if(!applist[appCount].appNo.empty()){
+            int currentAppNo = stoi(applist[appCount].appNo);
+            if (currentAppNo > appNO) appNO = currentAppNo; // update appNO to the highest number found in the file
+        }
+
+        appCount++;
+    }
+    inFile.close();
 }
 
 int listPendingApps(){
@@ -114,11 +148,13 @@ int approveRejectApps(){
         case 1:
             applist[pendingAmount[0]].status = "Approved";
             cout << "Application approved for Student ID " << sid << "." << endl;
+            saveFile();
             break;
 
         case 2:
             applist[pendingAmount[0]].status = "Rejected";
             cout << "Application rejected for Student ID " << sid << "." << endl;
+            saveFile();
             break;
         
         default:

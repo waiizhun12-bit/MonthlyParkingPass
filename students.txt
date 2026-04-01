@@ -1,0 +1,6 @@
+1,2404544,Alice Johnson,Approved
+2,2404545,Bob Smith,Rejected
+3,2404546,Charlie Brown,Approved
+4,2404547,Diana Prince,Rejected
+5,2101234,Tan Ah Kao,Pending
+6,2209876,Siti Nurhaliza,Approved

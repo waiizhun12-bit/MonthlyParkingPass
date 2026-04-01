@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <iomanip>
 #include <ctime>
 #include "system.h"
@@ -14,3 +14,4 @@ void student_application_statistic(){
 
 }
 
+*/
