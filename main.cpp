@@ -1,15 +1,34 @@
 #include <iostream>
+#include <string>
 #include "system.h"
 using namespace std;
 
-void main_menu();
+void menu (int &step);  // Main menu
 
-int main ()
-{
-    main_menu();
+int main () {
+    int step = 0;
+
+    while (step >= 0) {
+        if (step == 0) menu(step);
+        if (step == 1) login(step);
+        if (step == 2) regis(step);
+    }
 }
 
-void main_menu()
+void menu (int &step) {
+	header("Main Menu");
+	
+	string arr[] = {"Login","Register","Exit"};
+
+    switch (option(arr, 3)) {
+        case 1: step = 1; break;
+        case 2: step = 2; break;
+        case 3: step = -1; break;
+        default: invalid(); break;
+    }
+}
+
+/*void main_menu()
 {
     int choice;
     cout <<"---------------------------------"<<endl;
@@ -34,4 +53,4 @@ void main_menu()
         default:
             cout << "Invalid choice!" << endl;
     }
-}
+}*/
