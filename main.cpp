@@ -12,6 +12,7 @@ int main () {
         if (step == 0) menu(step);
         if (step == 1) login(step);
         if (step == 2) regis(step);
+        if (step == 3) list_pending_applications();
     }
 }
 
