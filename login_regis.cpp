@@ -40,13 +40,12 @@ void login (int &step) {
 			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = 3; break;
+				case 1: step = 3; return;
 				case 2: fill = 1; break;
-				case 3: step -= 1; break;
+				case 3: step = 0; return;
 				case 4: step = -1; break;
 				default: invalid(); break;
 			}
-			
 			//system("cls");
 		}
 	}

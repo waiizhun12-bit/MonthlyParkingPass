@@ -3,38 +3,46 @@
 #include "system.h"
 using namespace std;
 
-int admin_dashboard();
+int admin_dashboard();  
 
-void admin_menu()
+void admin_menu(int &step)   
 {
-    int selection;
-    selection = admin_dashboard();
+    while (step == 3) {
+        int selection = admin_dashboard();   
 
-    switch (selection)
-    {
-    case 1:
-        list_pending_applications();
-        break;
+        switch (selection)
+        {
+            case 1:
+                cout << "\n[DEBUG] Entering list_pending_applications()...\n";
+                list_pending_applications();
+                break;
 
-    default:
-        break;
+            case 5:
+                step = 0;    // back to main menu
+                return;
+
+            default:
+                cout << "Invalid choice.\n";
+                break;
+        }
     }
 }
+
 int admin_dashboard()
-{ 
+{
     int choose;
 
     cout <<"---------------------------------------"<<endl;
     cout <<"-           ADMIN   DASHBOARD         -"<<endl;
     cout <<"---------------------------------------"<<endl;
-    cout <<setw(30) << left << "- 1. Approve & Reject Applications    -"<<endl;
-    cout <<setw(30) << left << "- 2. Generate Monthly Report          -"<<endl;
-    cout <<setw(30) << left << "- 3. View Application Statistics      -"<<endl;
-    cout <<setw(30) << left << "- 4. Manage Students                  -"<<endl;
-    cout <<setw(30) << left << "- 5. Exit                             -"<<endl;
+    cout <<"- 1. Approve & Reject Applications    -"<<endl;
+    cout <<"- 2. Generate Monthly Report          -"<<endl;
+    cout <<"- 3. View Application Statistics      -"<<endl;
+    cout <<"- 4. Manage Students                  -"<<endl;
+    cout <<"- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";
 
-    cin >>choose;
+    cin >> choose;
     return choose;
 }

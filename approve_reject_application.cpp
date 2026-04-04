@@ -8,22 +8,6 @@
 
 using namespace std;
 
-// global variable for testing, need to replace with actual data from text file
-struct Application {
-        string appNo;
-        string studentID;
-        string studentName;
-        string status;          // Pending, Approved, Rejected
-        int startMonth;         // 1-12
-        int startYear;          // e.g., 2024
-        int duration;           // Duration (1-3)   
-};
-
-const int MAX_STUDENT = 100;
-Application applist[MAX_STUDENT];;
-int appCount = 0;
-int appNO = 0;
-
 void saveFile();
 void loadFile();
 int listPendingApps();
@@ -32,7 +16,6 @@ int approveRejectApps();
 void list_pending_applications(){
 
     loadFile();
-    saveFile();
     listPendingApps();
     approveRejectApps();
    
@@ -174,7 +157,7 @@ int approveRejectApps(){
         
         default:
             cout << "Back to main menu.";
-            admin_menu();    
+            return 0;    
         }
     
     return 0;

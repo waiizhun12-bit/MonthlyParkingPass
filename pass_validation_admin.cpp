@@ -1,10 +1,10 @@
-#include <iostream>
+/*#include <iostream>
 #include <iomanip>
 #include <ctime>
 #include "system.h"
 using namespace std;
 
-bool findLargestApprovePast(const string& id) {
+bool findLargestApprovePast(const string& sid) {
     bool found = false;
 
     for (int i = 0; i< appCount; i++){
@@ -38,4 +38,4 @@ void reminder(const string& sid) {
         return;
     }
 }
-
+    */

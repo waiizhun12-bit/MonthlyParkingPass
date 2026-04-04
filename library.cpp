@@ -4,6 +4,11 @@
 #include "system.h"
 using namespace std;
 
+Application applist[MAX_STUDENT];
+int appCount = 0;
+int appNO = 1;
+
+
 void split (void) {
 	cout << "--------------------------------------------------" << endl; 
 }
