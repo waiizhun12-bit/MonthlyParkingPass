@@ -13,9 +13,11 @@ void admin_menu(int &step)
         switch (selection)
         {
             case 1:
-                cout << "\n[DEBUG] Entering list_pending_applications()...\n";
                 list_pending_applications();
                 break;
+
+            case 3:
+                monthEndAlter(step);
 
             case 5:
                 step = 0;    // back to main menu
@@ -37,7 +39,7 @@ int admin_dashboard()
     cout <<"---------------------------------------"<<endl;
     cout <<"- 1. Approve & Reject Applications    -"<<endl;
     cout <<"- 2. Generate Monthly Report          -"<<endl;
-    cout <<"- 3. View Application Statistics      -"<<endl;
+    cout <<"- 3. Month End Alert                  -"<<endl;
     cout <<"- 4. Manage Students                  -"<<endl;
     cout <<"- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;

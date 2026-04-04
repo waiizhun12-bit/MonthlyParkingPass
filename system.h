@@ -8,7 +8,7 @@ struct Application {
         string appNo;
         string studentID;
         string studentName;
-        string status;          // Pending, Approved, Rejected
+        string status;          // Pending, Approved, Rejected, Expired
         int startMonth;         // 1-12
         int startYear;          // e.g., 2024
         int duration;           // Duration (1-3)   
@@ -32,6 +32,7 @@ void admin_menu(int &step);
 void loadFile();
 void saveFile();
 void list_pending_applications();
+void monthEndAlter(int &step);
 void studentAuth_menu();
 
 #endif

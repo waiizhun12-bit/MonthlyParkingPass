@@ -29,9 +29,9 @@ void saveFile() {
         outFile << applist[i].appNo << ","
                 << applist[i].studentID << ","
                 << applist[i].studentName << ","
-                << applist[i].status << ", "
-                << applist[i].startMonth << ", "
-                << applist[i].startYear << ", "
+                << applist[i].status << ","
+                << applist[i].startMonth << ","
+                << applist[i].startYear << ","
                 << applist[i].duration << endl;
     }
     outFile.close();
@@ -58,7 +58,7 @@ void loadFile() {
         getline(cc, dur, ',');
 
         applist[appCount].startMonth = sm.empty() ? 1 : stoi(sm); // default to 1 if empty
-        applist[appCount].startYear = sy.empty() ? 2026 : stoi(sy); // default to 2024 if empty
+        applist[appCount].startYear = sy.empty() ? 2026 : stoi(sy); // default to 2026 if empty
         applist[appCount].duration = dur.empty() ? 1 : stoi(dur); // default to 1 if empty
 
         // Avoid new registration overlap.
@@ -74,15 +74,15 @@ void loadFile() {
 
 int listPendingApps(){
     
-    cout <<"---------------------------------------------------------------"<<endl;
-    cout <<"-                   LIST PENDING APPLICATIONS                 -"<<endl;
-    cout <<"---------------------------------------------------------------"<<endl;
+    split();
+    header("LIST PENDING APPLICATIONS");
+    split();
     cout <<"| " << setw(10) << left << "App No" 
          << " | " << setw(14) << left << "Student ID" 
          << " | " << setw(16) << left << "Student Name" 
          << " | " << setw(10) << left << "Status" 
          << " |" << endl;
-    cout <<"---------------------------------------------------------------"<<endl;
+    split();
 
     bool has_pending = false;
 
