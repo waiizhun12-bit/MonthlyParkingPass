@@ -56,7 +56,7 @@ int login_register()
     cin>>choice;
 
     return choice;
-}   
+}  
 
 int login_menu()
 {

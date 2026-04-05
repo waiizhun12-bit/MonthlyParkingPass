@@ -3,86 +3,17 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
-#include <cctype>
 #include "system.h"
 
 using namespace std;
 
-void saveFile();
-void loadFile();
-int listPendingApps();
+int listPendingApps(int &step);
 int approveRejectApps();
 
-void list_pending_applications(){
+void list_pending_applications(int &step){
 
-    loadFile();
-    listPendingApps();
-    approveRejectApps();
-   
-}
-
-void saveFile() {
-    ofstream outFile("students.txt");
-    if (!outFile.is_open()) return; 
-
-    for (int i = 0; i < appCount; i++) {
-        outFile << applist[i].appNo << ","
-                << applist[i].studentID << ","
-                << applist[i].studentName << ","
-                << applist[i].status << ","
-                << applist[i].startMonth << ","
-                << applist[i].startYear << ","
-                << applist[i].duration << endl;
-    }
-    outFile.close();
-}
-
-void loadFile() {
-    ifstream inFile("students.txt");
-    if (!inFile.is_open()) return;
-
-    string line;
-    appCount = 0;
-
-    while (getline(inFile, line) && appCount < MAX_STUDENT){
-        stringstream cc(line); // use stringstream to split the data.
-
-        string sm, sy, dur;
-
-        getline(cc, applist[appCount].appNo, ',');
-        getline(cc, applist[appCount].studentID, ',');
-        getline(cc, applist[appCount].studentName, ',');
-        getline(cc, applist[appCount].status, ',');
-        getline(cc, sm, ',');
-        getline(cc, sy, ',');
-        getline(cc, dur, ',');
-
-        applist[appCount].startMonth = sm.empty() ? 1 : stoi(sm); // default to 1 if empty
-        applist[appCount].startYear = sy.empty() ? 2026 : stoi(sy); // default to 2026 if empty
-        applist[appCount].duration = dur.empty() ? 1 : stoi(dur); // default to 1 if empty
-
-        // Avoid new registration overlap.
-        if(!applist[appCount].appNo.empty()){
-            int currentAppNo = stoi(applist[appCount].appNo);
-            if (currentAppNo > appNO) appNO = currentAppNo; // update appNO to the highest number found in the file
-        }
-
-        appCount++;
-    }
-    inFile.close();
-}
-
-int listPendingApps(){
-    
-    split();
-    header("LIST PENDING APPLICATIONS");
-    split();
-    cout <<"| " << setw(10) << left << "App No" 
-         << " | " << setw(14) << left << "Student ID" 
-         << " | " << setw(16) << left << "Student Name" 
-         << " | " << setw(10) << left << "Status" 
-         << " |" << endl;
-    split();
+    loadApplication();
+    listPendingApps(step);
 
     bool has_pending = false;
 
@@ -101,9 +32,45 @@ int listPendingApps(){
 
     if (!has_pending){
         cout <<"No pending applications found." <<endl;
+        cout << "\n1. Back to Admin Menu" << endl;
+        cout << "\n2. Back to Main Menu" << endl;
+        cout << "\n3. Exit" << endl;
+
+    int go;
+    cin >> go;
+
+    if (go == 2){
+        step = 0;   // Back to main menu
+        return;
+    }
+    if (go == 3){
+        step = -1;  // Exit 
+        return;
     }
 
-    return 0;       
+    // Back to Admin menu
+    step = 3;
+
+    return;       
+    }
+
+    approveRejectApps();
+   
+}
+
+int listPendingApps(int &step){
+    
+    cout << "---------------------------------------------------------------" << endl;
+    cout << "-            LIST       PENDING        APPLICATIONS           -" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+    cout <<"| " << setw(10) << left << "App No" 
+         << " | " << setw(14) << left << "Student ID" 
+         << " | " << setw(16) << left << "Student Name" 
+         << " | " << setw(10) << left << "Status" 
+         << " |" << endl;
+    cout << "---------------------------------------------------------------" << endl;
+
+    return 0;
 }
 int approveRejectApps(){
     string sid;
@@ -146,13 +113,13 @@ int approveRejectApps(){
         case 1:
             applist[pendingAmount[0]].status = "Approved";
             cout << "Application approved for Student ID " << sid << "." << endl;
-            saveFile();
+            saveApplication();
             break;
 
         case 2:
             applist[pendingAmount[0]].status = "Rejected";
             cout << "Application rejected for Student ID " << sid << "." << endl;
-            saveFile();
+            saveApplication();
             break;
         
         default:

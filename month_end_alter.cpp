@@ -7,7 +7,7 @@ using namespace std;
 
 void monthEndAlter(int &step){
 
-    loadFile();
+    loadApplication();
 
     time_t t = time(nullptr);                   // Get the current time (in second)
     tm *now = localtime(&t);                    // Convert time to date
@@ -43,7 +43,7 @@ void monthEndAlter(int &step){
     }
 
     if (expirePasses > 0){
-        saveFile();
+        saveApplication();
         cout << "\n Updated Complete." << expirePasses << " passes were altered to Expired. ";
         cout << "Student.txt has been updated. \n";
     

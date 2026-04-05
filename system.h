@@ -4,14 +4,20 @@
 #include <string>
 using namespace std;
 
-struct Application {
-        string appNo;
-        string studentID;
-        string studentName;
-        string status;          // Pending, Approved, Rejected, Expired
-        int startMonth;         // 1-12
-        int startYear;          // e.g., 2024
-        int duration;           // Duration (1-3)   
+struct Application {                                     // Fields for application.txt
+        string appNo, studentID, studentName, status;    // Status are Pending, Approved, Rejected, Expired
+        int startMonth;                                  // 1-12
+        int startYear;                                   // e.g. 2024
+        int duration;                                    // Duration 1-3 months  
+};
+
+struct Student {
+        string studentID, studentName, password, faculty, phone, vehicleNo, status;
+};
+
+struct Payment{
+        string paymentID, appNo, studentID, paymentStatus, paymentDate;
+        double amount;
 };
 
 constexpr int MAX_STUDENT = 100;
@@ -29,9 +35,9 @@ void login (int &step); // Login
 void regis (int &step); // Register
 
 void admin_menu(int &step);
-void loadFile();
-void saveFile();
-void list_pending_applications();
+void loadApplication();
+void saveApplication();
+void list_pending_applications(int &step);
 void monthEndAlter(int &step);
 void studentAuth_menu();
 
