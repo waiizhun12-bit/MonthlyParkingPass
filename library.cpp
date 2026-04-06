@@ -8,6 +8,9 @@ Application applist[MAX_STUDENT];
 int appCount = 0;
 int appNO = 1;
 
+Student studentList[MAX_STUDENT];
+int studentCount = 0;
+int userNo = 1;
 
 void split (void) {
 	cout << "--------------------------------------------------" << endl; 
@@ -44,7 +47,7 @@ int option (string array[], int size) {
 
 void invalid (void) {
 	cout << "\nInvalid input!\n"
-		 << "Press enter to try again";
+		 << "Press enter to try again: ";
 	
 	cin.ignore();
 	cin.get();

@@ -12,7 +12,7 @@ struct Application {                                     // Fields for applicati
 };
 
 struct Student {
-        string studentID, studentName, password, faculty, phone, vehicleNo, status;
+        string userNo, studentID, studentName, password, faculty, phone, vehicleNo, status;
 };
 
 struct Payment{
@@ -26,6 +26,10 @@ extern Application applist[MAX_STUDENT];
 extern int appCount;
 extern int appNO;
 
+extern Student studentList[MAX_STUDENT];
+extern int studentCount;
+extern int userNo;
+
 void header (string sub);
 void split (void);
 int option (string array[], int size);
@@ -35,6 +39,8 @@ void login (int &step); // Login
 void regis (int &step); // Register
 
 void admin_menu(int &step);
+void loadStudent();
+void saveStudent();
 void loadApplication();
 void saveApplication();
 void list_pending_applications(int &step);
