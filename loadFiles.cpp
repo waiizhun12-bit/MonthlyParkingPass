@@ -5,8 +5,52 @@
 #include "system.h"
 using namespace std;
 
-//loadStudent
-//saveStudent
+void saveStudent() {
+    ofstream outFile("student.txt");
+    if (!outFile.is_open()) return;
+
+    for (int i = 0; i < studentCount; i++) {
+        outFile << studentList[i].userNo << ","
+                << studentList[i].studentID << ","
+                << studentList[i].studentName << ","
+                << studentList[i].password << ","
+                << studentList[i].faculty << ","
+                << studentList[i].phone << ","
+                << studentList[i].vehicleNo << ","
+                << studentList[i].status << ",";
+    }
+    outFile.close();
+}
+
+void loadStudent(){
+    ifstream inFile("student.txt");
+    if (!inFile.is_open()) return;
+
+    string line;
+    studentCount = 0;
+
+    while (getline(inFile, line) && studentCount < MAX_STUDENT){
+        stringstream ss(line); // use stringstream to split the data.
+
+        getline(ss, studentList[studentCount].userNo, ',');
+        getline(ss, studentList[studentCount].studentID, ',');
+        getline(ss, studentList[studentCount].studentName, ',');
+        getline(ss, studentList[studentCount].password, ',');
+        getline(ss, studentList[studentCount].faculty, ',');
+        getline(ss, studentList[studentCount].phone, ',');
+        getline(ss, studentList[studentCount].vehicleNo, ',');
+        getline(ss, studentList[studentCount].status, ',');
+
+        // Avoid new registration overlap.
+        if(!studentList[studentCount].userNo.empty()){
+            int currentUserNo = stoi(studentList[studentCount].userNo);
+            if (currentUserNo > userNo) userNo = currentUserNo; // update appNO to the highest number found in the file
+        }
+        studentCount++;
+    }
+    inFile.close();
+}
+
 void saveApplication() {
     ofstream outFile("application.txt");
     if (!outFile.is_open()) return; 

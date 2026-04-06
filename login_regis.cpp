@@ -9,7 +9,7 @@ void regis (int &step); // Register
 void login (int &step) {
 	int fill = 1;
 	string email, password;
-	
+
 	while (step == 1) {
 		header("Login");
 		
@@ -19,7 +19,7 @@ void login (int &step) {
 			if (fill == 1) {
 				cin >> email;
 				
-				if (email.find("@1utar.my") != string::npos) {
+				if (email.find("@1utar.my") || email.find("@utar.edu.my") != string::npos) {
 					++fill;
 				} else invalid();
 			} else cout << email << endl;
@@ -37,13 +37,14 @@ void login (int &step) {
 		if (fill == 3) {
 			split();
 		
-			string arr[] = {"Continue", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue to Student Menu","Continue to Admin Menu", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = 3; return;
-				case 2: fill = 1; break;
-				case 3: step = 0; return;
-				case 4: step = -1; break;
+				case 1: step = 3; return;	
+				case 2: step = 4; return;
+				case 3: fill = 1; break;
+				case 4: step = 0; return;
+				case 5: step = -1; break;
 				default: invalid(); break;
 			}
 			//system("cls");
@@ -102,7 +103,7 @@ void regis (int &step) {
 			if (fill == 5) {
 				cin >> p_num;
 				
-				if (p_num.size() == 10 || p_num.size() == 11) {
+				if (p_num.size() >= 10 || p_num.size() <= 11) {
 					++fill;
 				} else invalid();
 			} else cout << p_num << endl;
@@ -114,7 +115,7 @@ void regis (int &step) {
 			if (fill == 6) {
 				cin >> nric;
 							
-				if (nric.size() == 12) {
+				if (nric.size() >= 12) {
 					++fill;
 				} else invalid();
 			} else cout << nric << endl;
@@ -123,7 +124,7 @@ void regis (int &step) {
 		if (fill == 7) {
 			split();
 		
-			string arr[] = {"Continue", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue to Student Menu", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
 				case 1: step = 3; break;

@@ -45,33 +45,29 @@ void monthEndAlter(int &step){
     if (expirePasses > 0){
         saveApplication();
         cout << "\n Updated Complete." << expirePasses << " passes were altered to Expired. ";
-        cout << "Student.txt has been updated. \n";
+        cout << "Application.txt has been updated. \n";
     
     }else{
-        cout << "No passes needed to be Expired this month. \n";
-    }
-
-    cout << "\n1. Back to Admin Menu" << endl;
-    cout << "\n2. Run Month End Alert" << endl;
-    cout << "\n3. Back to Main Menu" << endl;
-    cout << "\n4. Exit" << endl;
+        cout << "No passes needed to be Expired this month." << endl;
+        cout << "\n1. Back to Admin Menu" << endl;
+        cout << "\n2. Back to Main Menu" << endl;
+        cout << "\n3. Exit" << endl;
 
     int opt;
     cin >> opt;
 
     if (opt == 2){
-        monthEndAlter(step);
-        return;
-    }
-    if (opt == 3){
         step = 0;   // Back to main menu
         return;
     }
-    if (opt == 4){
+    if (opt == 3){
         step = -1;  // Exit 
         return;
     }
 
     // Back to Admin menu
-    step = 3;
+        step = 3;
+        return;       
+    }
+
 }

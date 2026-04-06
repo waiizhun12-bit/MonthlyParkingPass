@@ -49,9 +49,8 @@ void list_pending_applications(int &step){
     }
 
     // Back to Admin menu
-    step = 3;
-
-    return;       
+        step = 3;
+        return;       
     }
 
     approveRejectApps();

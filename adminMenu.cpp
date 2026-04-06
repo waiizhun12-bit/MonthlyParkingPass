@@ -18,7 +18,7 @@ void admin_menu(int &step)
 
             case 3:
                 monthEndAlter(step);
-
+                break;
             case 5:
                 step = 0;    // back to main menu
                 return;
