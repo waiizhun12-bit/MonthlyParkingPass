@@ -20,10 +20,10 @@ void monthEndAlter(int &step){
 
     for (int i = 0; i < appCount; i++){
 
-        if(applist[i].status == "Approved"){             // Check the pass status.
+        if(appList[i].status == "Approved"){             // Check the pass status.
 
-            int validMonth = applist[i].startMonth + (applist[i].duration - 1);
-            int validYear = applist[i].startYear;
+            int validMonth = appList[i].startMonth + (appList[i].duration - 1);
+            int validYear = appList[i].startYear;
 
             if (validMonth > 12){
                 validMonth -= 12;
@@ -33,11 +33,11 @@ void monthEndAlter(int &step){
             bool expired = (currentYear > validYear) || (currentYear == validYear && currentMonth > validMonth);
 
             if (expired){
-                applist[i].status = "Expired";
+                appList[i].status = "Expired";
                 expirePasses++;
 
-                cout << "Alter ID " << applist[i].studentID
-                     << " (" << applist[i].studentName << ") to expired" <<endl; 
+                cout << "Alter ID " << appList[i].studentID
+                     << " (" << appList[i].studentName << ") to expired" <<endl; 
             }
         }
     }

@@ -5,101 +5,146 @@
 #include "system.h"
 using namespace std;
 
-void saveStudent() {
-    ofstream outFile("student.txt");
-    if (!outFile.is_open()) return;
-
-    for (int i = 0; i < studentCount; i++) {
-        outFile << studentList[i].userNo << ","
-                << studentList[i].studentID << ","
-                << studentList[i].studentName << ","
-                << studentList[i].password << ","
-                << studentList[i].faculty << ","
-                << studentList[i].phone << ","
-                << studentList[i].vehicleNo << ","
-                << studentList[i].status << ",";
-    }
-    outFile.close();
-}
-
-void loadStudent(){
-    ifstream inFile("student.txt");
-    if (!inFile.is_open()) return;
-
-    string line;
-    studentCount = 0;
-
-    while (getline(inFile, line) && studentCount < MAX_STUDENT){
-        stringstream ss(line); // use stringstream to split the data.
-
-        getline(ss, studentList[studentCount].userNo, ',');
-        getline(ss, studentList[studentCount].studentID, ',');
-        getline(ss, studentList[studentCount].studentName, ',');
-        getline(ss, studentList[studentCount].password, ',');
-        getline(ss, studentList[studentCount].faculty, ',');
-        getline(ss, studentList[studentCount].phone, ',');
-        getline(ss, studentList[studentCount].vehicleNo, ',');
-        getline(ss, studentList[studentCount].status, ',');
-
-        // Avoid new registration overlap.
-        if(!studentList[studentCount].userNo.empty()){
-            int currentUserNo = stoi(studentList[studentCount].userNo);
-            if (currentUserNo > userNo) userNo = currentUserNo; // update appNO to the highest number found in the file
-        }
-        studentCount++;
-    }
-    inFile.close();
-}
-
 void saveApplication() {
-    ofstream outFile("application.txt");
-    if (!outFile.is_open()) return; 
+    ofstream outApplicationFile("application.txt");
+    if (!outApplicationFile.is_open()) return; 
 
     for (int i = 0; i < appCount; i++) {
-        outFile << applist[i].appNo << ","
-                << applist[i].studentID << ","
-                << applist[i].studentName << ","
-                << applist[i].status << ","
-                << applist[i].startMonth << ","
-                << applist[i].startYear << ","
-                << applist[i].duration << endl;
+        outApplicationFile << appList[i].appID << ","
+                           << appList[i].studentID << ","
+                           << appList[i].studentName << ","
+                           << appList[i].status << ","
+                           << appList[i].startMonth << ","
+                           << appList[i].startYear << ","
+                           << appList[i].duration << endl;
     }
-    outFile.close();
+    outApplicationFile.close();
 }
 
 void loadApplication() {
-    ifstream inFile("application.txt");
-    if (!inFile.is_open()) return;
+    ifstream inApplicationFile("application.txt");
+    if (!inApplicationFile.is_open()) return;
 
     string line;
     appCount = 0;
 
-    while (getline(inFile, line) && appCount < MAX_STUDENT){
+    while (getline(inApplicationFile, line) && appCount < MAX_APPLICATIONS){
         stringstream cc(line); // use stringstream to split the data.
 
         string sm, sy, dur;
 
-        getline(cc, applist[appCount].appNo, ',');
-        getline(cc, applist[appCount].studentID, ',');
-        getline(cc, applist[appCount].studentName, ',');
-        getline(cc, applist[appCount].status, ',');
+        getline(cc, appList[appCount].appID, ',');
+        getline(cc, appList[appCount].studentID, ',');
+        getline(cc, appList[appCount].studentName, ',');
+        getline(cc, appList[appCount].status, ',');
         getline(cc, sm, ',');
         getline(cc, sy, ',');
         getline(cc, dur, ',');
 
-        applist[appCount].startMonth = sm.empty() ? 1 : stoi(sm); // default to 1 if empty
-        applist[appCount].startYear = sy.empty() ? 2026 : stoi(sy); // default to 2026 if empty
-        applist[appCount].duration = dur.empty() ? 1 : stoi(dur); // default to 1 if empty
+        appList[appCount].startMonth = sm.empty() ? 1 : stoi(sm); // default to 1 if empty
+        appList[appCount].startYear = sy.empty() ? 2026 : stoi(sy); // default to 2026 if empty
+        appList[appCount].duration = dur.empty() ? 1 : stoi(dur); // default to 1 if empty
 
         // Avoid new registration overlap.
-        if(!applist[appCount].appNo.empty()){
-            int currentAppNo = stoi(applist[appCount].appNo);
-            if (currentAppNo > appNO) appNO = currentAppNo; // update appNO to the highest number found in the file
+        if(!appList[appCount].appID.empty()){
+            int currentAppNo = stoi(appList[appCount].appID);
+            if (currentAppNo > appNo) appNo = currentAppNo; // update appNO to the highest number found in the file
         }
 
         appCount++;
     }
-    inFile.close();
+    inApplicationFile.close();
 }
-//loadPayment
-//savePayment 
+
+void saveStudent() {
+    ofstream outStudentFile("student.txt");
+    if (!outStudentFile.is_open()) return;
+
+    for (int i = 0; i < studentCount; i++) {
+        outStudentFile << studentList[i].userID << ","
+                       << studentList[i].studentID << ","
+                       << studentList[i].studentName << ","
+                       << studentList[i].email << ","
+                       << studentList[i].password << ","
+                       << studentList[i].phone << ","
+                       << studentList[i].faculty << ","
+                       << studentList[i].nric << ","
+                       << studentList[i].vehicleNo << ",";
+    }
+    outStudentFile.close();
+}
+
+void loadStudent(){
+    ifstream inStudentFile("student.txt");
+    if (!inStudentFile.is_open()) return;
+
+    string line;
+    studentCount = 0;
+
+    while (getline(inStudentFile, line) && studentCount < MAX_STUDENT){
+        stringstream ss(line); // use stringstream to split the data.
+
+        getline(ss, studentList[studentCount].userID, ',');
+        getline(ss, studentList[studentCount].studentID, ',');
+        getline(ss, studentList[studentCount].studentName, ',');
+        getline(ss, studentList[studentCount].email, ',');
+        getline(ss, studentList[studentCount].password, ',');
+        getline(ss, studentList[studentCount].phone, ',');
+        getline(ss, studentList[studentCount].faculty, ',');
+        getline(ss, studentList[studentCount].nric, ',');
+        getline(ss, studentList[studentCount].vehicleNo, ',');
+
+        // Avoid new registration overlap.
+        if(!studentList[studentCount].userID.empty()){
+            int currentUserNo = stoi(studentList[studentCount].userID);
+            if (currentUserNo > userNo) userNo = currentUserNo; // update appNO to the highest number found in the file
+        }
+        studentCount++;
+    }
+    inStudentFile.close();
+}
+
+void loadPayment(){
+    ifstream inPaymentFile("payment.txt");
+    if (!inPaymentFile.is_open()) return;
+
+    string line;
+    payCount = 0;
+
+    while (getline(inPaymentFile, line) && payCount < MAX_PAYMENTS){
+        stringstream ss(line); // use stringstream to split the data.
+
+        string am;
+
+        getline(ss, payList[payCount].paymentID, ',');
+        getline(ss, payList[payCount].appID, ',');
+        getline(ss, payList[payCount].studentID, ',');
+        getline(ss, payList[payCount].paymentStatus, ',');
+        getline(ss, payList[payCount].paymentDate, ',');
+        getline(ss, am, ',');
+
+        // Avoid new registration overlap.
+        if(!payList[payCount].paymentID.empty()){
+            int currentpaymentID = stoi(payList[payCount].paymentID);
+            if (currentpaymentID > payNo) payNo = currentpaymentID; // update appNO to the highest number found in the file
+        }
+        payCount++;
+    }
+    inPaymentFile.close();
+}
+
+
+void savePayment(){
+        ofstream outPaymentFile("payment.txt");
+        if (!outPaymentFile.is_open()) return;
+
+        for (int i = 0; i < payCount; i++) {
+            outPaymentFile << payList[i].paymentID << ","
+                           << payList[i].appID << ","
+                           << payList[i].studentID << ","
+                           << payList[i].paymentStatus << ","
+                           << payList[i].paymentDate << ","
+                           << payList[i].amount << ",";
+    }
+    outPaymentFile.close();
+} 
