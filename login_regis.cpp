@@ -8,6 +8,7 @@ void regis (int &step); // Register
 
 void login (int &step) {
 	int fill = 1;
+	bool admin = false;
 	string email, password;
 
 	while (step == 1) {
@@ -20,6 +21,9 @@ void login (int &step) {
 				cin >> email;
 				
 				if (email.find("@1utar.my") != string::npos) {
+					++fill;
+				} else if (email.find("@utar.edu.my") != string::npos) {
+					admin = true;
 					++fill;
 				} else invalid();
 			} else cout << email << endl;
@@ -37,14 +41,13 @@ void login (int &step) {
 		if (fill == 3) {
 			split();
 		
-			string arr[] = {"Continue to Student Menu","Continue to Admin Menu", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = 3; return;	
-				case 2: step = 4; return;
-				case 3: fill = 1; break;
-				case 4: step = 0; return;
-				case 5: step = -1; break;
+				case 1: step = (admin) ? 3 : 4; break;	
+				case 2: fill = 1; break;
+				case 3: step = 0; break;;
+				case 4: step = -1; break;
 				default: invalid(); break;
 			}
 			//system("cls");
