@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17
 
 # Name of the final executable
-TARGET = parkingSystem
+TARGET = parkingSystem.exe
 
 # Automatically find all .cpp files in the current directory
 SRCS = $(wildcard *.cpp)
@@ -19,7 +19,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 # Rule to compile .cpp files to .o files
-%.o: %.cpp
+%.o: %.cpp system.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Clean up generated files

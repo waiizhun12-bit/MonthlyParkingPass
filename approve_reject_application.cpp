@@ -7,13 +7,13 @@
 
 using namespace std;
 
-int listPendingApps(int &step);
+int listPendingApps();
 int approveRejectApps();
 
-void list_pending_applications(int &step){
+void listPendingApplications(int &step){
 
     loadApplication();
-    listPendingApps(step);
+    listPendingApps();
 
     bool has_pending = false;
 
@@ -57,7 +57,7 @@ void list_pending_applications(int &step){
    
 }
 
-int listPendingApps(int &step){
+int listPendingApps(){
     
     cout << "---------------------------------------------------------------" << endl;
     cout << "-            LIST       PENDING        APPLICATIONS           -" << endl;

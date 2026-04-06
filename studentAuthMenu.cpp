@@ -7,15 +7,54 @@
 
 using namespace std;
 
+int studentMenu();
 
-int login_register();
-int login_menu();
-int register_menu();
-int reset_password();
-
-void studentAuth_menu()
+void studentAuthMenu(int &step)
 {
-    int answer, fpassword;
+   while (step == 3) {
+        int cuba = studentMenu();   
+
+        switch (cuba)
+        {
+            case 1:
+                listPendingApplications(step);
+                break;
+
+            case 3:
+                monthEndAlter(step);
+                break;
+            case 5:
+                step = 0;    // back to main menu
+                return;
+
+            default:
+                cout << "Invalid choice.\n";
+                break;
+        }
+    }
+
+}
+
+int studentMenu()
+{
+    int pilih;
+
+    cout <<"---------------------------------------"<<endl;
+    cout <<"-           ADMIN   DASHBOARD         -"<<endl;
+    cout <<"---------------------------------------"<<endl;
+    cout <<"- 1. Approve & Reject                 -"<<endl;
+    cout <<"- 2. Generate Monthly                 -"<<endl;
+    cout <<"- 3. Month End Alert                  -"<<endl;
+    cout <<"- 4. Manage Students                  -"<<endl;
+    cout <<"- 5. Exit                             -"<<endl;
+    cout <<"---------------------------------------"<<endl;
+    cout <<"Enter your choice: ";
+
+    cin >> pilih;
+    return pilih;
+}
+/*
+ int answer, fpassword;
     answer = login_register();
 
     while(answer < 1 || answer > 2)
@@ -39,8 +78,6 @@ void studentAuth_menu()
             cin >>fpassword;
         }
     }
-
-}
 
 int login_register()
 {
@@ -166,4 +203,4 @@ int register_menu()
 
     cout << "\nRegistration Successful for " << name << "!" << endl;
     return 0;
-}
+}*/

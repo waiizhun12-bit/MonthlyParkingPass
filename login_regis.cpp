@@ -19,7 +19,7 @@ void login (int &step) {
 			if (fill == 1) {
 				cin >> email;
 				
-				if (email.find("@1utar.my") || email.find("@utar.edu.my") != string::npos) {
+				if (email.find("@1utar.my") != string::npos) {
 					++fill;
 				} else invalid();
 			} else cout << email << endl;

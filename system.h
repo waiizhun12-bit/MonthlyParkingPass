@@ -43,8 +43,8 @@ void loadStudent();
 void saveStudent();
 void loadApplication();
 void saveApplication();
-void list_pending_applications(int &step);
+void listPendingApplications(int &step);
 void monthEndAlter(int &step);
-void studentAuth_menu();
+void studentAuthMenu(int &step);
 
 #endif

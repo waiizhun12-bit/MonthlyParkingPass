@@ -13,7 +13,7 @@ void admin_menu(int &step)
         switch (selection)
         {
             case 1:
-                list_pending_applications(step);
+                listPendingApplications(step);
                 break;
 
             case 3:
