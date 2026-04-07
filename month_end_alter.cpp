@@ -9,7 +9,7 @@ void monthEndAlter(int &step){
 
     loadApplication();
 
-    time_t t = time(nullptr);                   // Get the current time (in second)
+    time_t t = time(NULL);                   // Get the current time (in second)
     tm *now = localtime(&t);                    // Convert time to date
     int currentMonth = now-> tm_mon + 1;        
     int currentYear = now-> tm_year + 1900;

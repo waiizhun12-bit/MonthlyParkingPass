@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <limits>
 #include "system.h"
 using namespace std;
 
@@ -7,8 +9,12 @@ void login (int &step); // Login
 void regis (int &step); // Register
 
 void login (int &step) {
+
+	loadStudent();
+
 	int fill = 1;	
-	string email, password;
+	Student newUser;
+	int admin;
 
 	while (step == 1) {
 		header("Login");
@@ -17,24 +23,24 @@ void login (int &step) {
 			cout << "Email   : ";
 			
 			if (fill == 1) {
-				cin >> email;
+				cin >> newUser.email;
 				
-				if (email.find("@1utar.my") != string::npos) {
+				if (newUser.email.find("@1utar.my") != string::npos) {
 					++fill;
-				} else if (email.find("@utar.edu.my") != string::npos) {
+				} else if (newUser.email.find("@utar.edu.my") != string::npos) {
 					admin = true;
 					++fill;
 				} else invalid();
-			} else cout << email << endl;
+			} else cout << newUser.email << endl;
 		} 
 		
 		if (fill >= 2) {
 			cout << "Password: ";
 			
 			if (fill == 2) {
-				cin >> password;
+				cin >> newUser.password;
 				++fill;
-			} else cout << password << endl;
+			} else cout << newUser.password << endl;
 		}
 		
 		if (fill == 3) {
@@ -43,16 +49,21 @@ void login (int &step) {
 			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 5)) {
-				case 1: step = 4; return;	
-				case 2: step = 3; return;
-				case 3: fill = 1; break;
-				case 4: step = 0; return;
-				case 5: step = -1; break;
+				case 1: step = 4; return;	// student menu
+				case 2: step = 3; return;	// admin menu
+				case 3: fill = 1; break;	// Redo
+				case 4: step = 0; return;	// main menu
+				case 5: step = -1; break;	// exit
 				default: invalid(); break;
 			}
 			//system("cls");
 		}
 	}
+}
+string toString(int value){
+	stringstream ss;
+	ss << value;
+	return ss.str();
 }
 
 void regis (int &step) {
@@ -60,12 +71,12 @@ void regis (int &step) {
 	
 	int fill = 1;
 	Student newStudent;
-	
-	newStudent.userID = "User" + to_string(studentCount + 1);	// Automaticlly generate User 1, User 2...Once have new user to register.
-	cout << "Your User ID is " << newStudent.userID << endl;
 
 	while (step == 2) {
 		header("Register");
+		
+		newStudent.userID = "User" + toString(studentCount + 1);	// Automaticlly generate User 1, User 2...Once have new user to register.
+		cout << "Your User ID is " << newStudent.userID << endl;	
 		
 		if (fill >= 1) {
 			cout << "Student ID  : ";
@@ -90,9 +101,10 @@ void regis (int &step) {
 			
 			if (fill == 3) {
 				cin >> newStudent.email;
-				if (email.find("@1utar.my") != string::npos) {
+				if (newStudent.email.find("@1utar.my") != string::npos) {
 					++fill;
 				} else invalid();
+				cin.clear();
 			} else cout << newStudent.email << endl;			
 		}
 		
@@ -132,14 +144,14 @@ void regis (int &step) {
 			if (fill == 7) {
 				cin >> newStudent.nric;
 							
-				if (newStudent.nric.size() >= 12) {
+				if (newStudent.nric.size() == 12 ) {
 					++fill;
 				} else invalid();
 			} else cout << newStudent.nric << endl;
 		}
 
 		if (fill >= 8) {
-			cout << "Vehicle Number		: ";
+			cout << "Vehicle Number	: ";
 
 			if (fill == 8) {
 				cin >> newStudent.vehicleNo;

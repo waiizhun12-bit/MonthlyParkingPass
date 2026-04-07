@@ -20,9 +20,9 @@ struct Payment{
         double amount;
 };
 
-constexpr int MAX_STUDENT = 100;
-constexpr int MAX_APPLICATIONS = 200;
-constexpr int MAX_PAYMENTS = 200;
+const int MAX_STUDENT = 100;
+const int MAX_APPLICATIONS = 200;
+const int MAX_PAYMENTS = 200;
 
 extern Application appList[MAX_APPLICATIONS];
 extern int appCount;
@@ -43,6 +43,8 @@ void invalid (void);
 
 void login (int &step); // Login
 void regis (int &step); // Register
+int toInteger(const string& s);
+string toString(int value);
 
 void admin_menu(int &step);                     // Show admin menu
 void loadStudent();                             // Load student.txt
