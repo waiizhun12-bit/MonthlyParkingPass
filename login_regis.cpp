@@ -21,6 +21,9 @@ void login (int &step) {
 				
 				if (email.find("@1utar.my") != string::npos) {
 					++fill;
+				} else if (email.find("@utar.edu.my") != string::npos) {
+					admin = true;
+					++fill;
 				} else invalid();
 			} else cout << email << endl;
 		} 
@@ -37,7 +40,7 @@ void login (int &step) {
 		if (fill == 3) {
 			split();
 		
-			string arr[] = {"Continue to Student Menu","Continue to Admin Menu", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 5)) {
 				case 1: step = 4; return;	
