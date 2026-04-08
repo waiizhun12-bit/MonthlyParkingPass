@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <limits>
 #include "system.h"
 using namespace std;
 
@@ -14,7 +13,7 @@ void login (int &step) {
 
 	int fill = 1;	
 	Student newUser;
-	int admin;
+	bool admin;
 
 	while (step == 1) {
 		header("Login");
@@ -75,7 +74,7 @@ void regis (int &step) {
 	while (step == 2) {
 		header("Register");
 		
-		newStudent.userID = "User" + toString(studentCount + 1);	// Automaticlly generate User 1, User 2...Once have new user to register.
+		newStudent.userID = "User " + toString(studentCount + 1);	// Automaticlly generate User 1, User 2...Once have new user to register.
 		cout << "Your User ID is " << newStudent.userID << endl;	
 		
 		if (fill >= 1) {
@@ -104,7 +103,6 @@ void regis (int &step) {
 				if (newStudent.email.find("@1utar.my") != string::npos) {
 					++fill;
 				} else invalid();
-				cin.clear();
 			} else cout << newStudent.email << endl;			
 		}
 		
@@ -158,6 +156,9 @@ void regis (int &step) {
 				++fill;
 			} else cout << newStudent.vehicleNo << endl;
 		}
+		
+		studentList[studentCount] = newStudent;
+		studentCount++;
 		saveStudent();
 		
 		if (fill == 9) {

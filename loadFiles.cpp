@@ -33,7 +33,6 @@ void loadApplication() {
     if (!inApplicationFile.is_open()) return;
 
     string line;
-    appCount = 0;
 
     while (getline(inApplicationFile, line) && appCount < MAX_APPLICATIONS){
         stringstream ss(line); // use stringstream to split the data.
@@ -65,7 +64,10 @@ void loadApplication() {
 
 void saveStudent() {
     ofstream outStudentFile("student.txt");
-    if (!outStudentFile.is_open()) return;
+    if (!outStudentFile.is_open()){
+        cout << "Cannot open student.txt for writing.\n";
+        return;
+    } 
 
     for (int i = 0; i < studentCount; i++) {
      outStudentFile << studentList[i].userID << ","
@@ -79,6 +81,7 @@ void saveStudent() {
                     << studentList[i].vehicleNo << endl;
     }
     outStudentFile.close();
+    cout << "Student data saved.\n";
 }
 
 void loadStudent(){
