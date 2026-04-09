@@ -11,7 +11,7 @@ int studentMenu();
 
 void studentAuthMenu(int &step)
 {
-   while (step == 3) {
+   while (step == 4) {
         int cuba = studentMenu();   
 
         switch (cuba)
@@ -40,7 +40,7 @@ int studentMenu()
     int pilih;
 
     cout <<"---------------------------------------"<<endl;
-    cout <<"-           ADMIN   DASHBOARD         -"<<endl;
+    cout <<"-          STUDENT   DASHBOARD        -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"- 1. Approve & Reject                 -"<<endl;
     cout <<"- 2. Generate Monthly                 -"<<endl;

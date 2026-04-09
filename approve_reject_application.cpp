@@ -18,14 +18,14 @@ void listPendingApplications(int &step){
     bool has_pending = false;
 
     for (int i = 0; i < appCount; i++){
-        if (applist[i].status == "Pending")
+        if (appList[i].status == "Pending")
         {   
             has_pending = true;
 
-            cout <<"| " << setw(10) << left << applist[i].appNo 
-                 << " | " << setw(14) << left << applist[i].studentID 
-                 << " | " << setw(16) << left << applist[i].studentName 
-                 << " | " << setw(10) << left << applist[i].status 
+            cout <<"| " << setw(10) << left << appList[i].appID 
+                 << " | " << setw(14) << left << appList[i].studentID 
+                 << " | " << setw(16) << left << appList[i].studentName 
+                 << " | " << setw(10) << left << appList[i].status 
                  << " |" << endl;
         }
     }
@@ -62,7 +62,7 @@ int listPendingApps(){
     cout << "---------------------------------------------------------------" << endl;
     cout << "-            LIST       PENDING        APPLICATIONS           -" << endl;
     cout << "---------------------------------------------------------------" << endl;
-    cout <<"| " << setw(10) << left << "App No" 
+    cout <<"| " << setw(10) << left << "App ID" 
          << " | " << setw(14) << left << "Student ID" 
          << " | " << setw(16) << left << "Student Name" 
          << " | " << setw(10) << left << "Status" 
@@ -89,7 +89,7 @@ int approveRejectApps(){
     int pendingCount = 0;
 
     for (int i = 0; i < appCount; i++){
-        if (applist[i].studentID == sid  && applist[i].status == "Pending")
+        if (appList[i].studentID == sid  && appList[i].status == "Pending")
         {
             pendingAmount[pendingCount] = i;
             pendingCount++;
@@ -110,13 +110,13 @@ int approveRejectApps(){
     
     switch (pilih){
         case 1:
-            applist[pendingAmount[0]].status = "Approved";
+            appList[pendingAmount[0]].status = "Approved";
             cout << "Application approved for Student ID " << sid << "." << endl;
             saveApplication();
             break;
 
         case 2:
-            applist[pendingAmount[0]].status = "Rejected";
+            appList[pendingAmount[0]].status = "Rejected";
             cout << "Application rejected for Student ID " << sid << "." << endl;
             saveApplication();
             break;

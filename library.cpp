@@ -1,16 +1,21 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <limits>
 #include "system.h"
 using namespace std;
 
-Application applist[MAX_STUDENT];
+Application appList[MAX_APPLICATIONS];
 int appCount = 0;
-int appNO = 1;
+int appNo = 1;
 
 Student studentList[MAX_STUDENT];
 int studentCount = 0;
 int userNo = 1;
+
+Payment payList[MAX_PAYMENTS];
+int payCount = 0;
+int payNo =1;
 
 void split (void) {
 	cout << "--------------------------------------------------" << endl; 
