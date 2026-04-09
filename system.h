@@ -46,5 +46,6 @@ void saveApplication();
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
 void studentAuthMenu(int &step);
+void manageStudent();
 
 #endif

@@ -19,7 +19,12 @@ void admin_menu(int &step)
             case 3:
                 monthEndAlter(step);
                 break;
-            case 5:
+
+            /*case 4:
+                manageStudents();
+                break;*/
+
+            case 4:
                 step = 0;    // back to main menu
                 return;
 
