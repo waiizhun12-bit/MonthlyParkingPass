@@ -70,15 +70,14 @@ void saveStudent() {
     } 
 
     for (int i = 0; i < studentCount; i++) {
-     outStudentFile << studentList[i].userID << ","
-                    << studentList[i].studentID << ","
+     outStudentFile << studentList[i].studentID << ","
                     << studentList[i].studentName << ","
                     << studentList[i].email << ","
                     << studentList[i].password << ","
                     << studentList[i].phone << ","
                     << studentList[i].faculty << ","
                     << studentList[i].nric << ","
-                    << studentList[i].vehicleNo << endl;
+                    << studentList[i].vehicleNo << endl;   
     }
     outStudentFile.close();
     cout << "Student data saved.\n";
@@ -94,7 +93,6 @@ void loadStudent(){
     while (getline(inStudentFile, line) && studentCount < MAX_STUDENT){
         stringstream ss(line); // use stringstream to split the data.
 
-        getline(ss, studentList[studentCount].userID, ',');
         getline(ss, studentList[studentCount].studentID, ',');
         getline(ss, studentList[studentCount].studentName, ',');
         getline(ss, studentList[studentCount].email, ',');
@@ -105,9 +103,8 @@ void loadStudent(){
         getline(ss, studentList[studentCount].vehicleNo, ',');
 
         // Avoid new registration overlap.
-        if(!studentList[studentCount].userID.empty()){
-            int currentUserNo = toInteger(studentList[studentCount].userID);
-            if (currentUserNo > userNo) userNo = currentUserNo; // update appNO to the highest number found in the file
+        if(!studentList[studentCount].studentID.empty()){
+            cout << "This student ID occured.";
         }
         studentCount++;
     }
@@ -127,7 +124,6 @@ void loadPayment(){
         string am;
 
         getline(ss, payList[payCount].paymentID, ',');
-        getline(ss, payList[payCount].appID, ',');
         getline(ss, payList[payCount].studentID, ',');
         getline(ss, payList[payCount].paymentStatus, ',');
         getline(ss, payList[payCount].paymentDate, ',');
@@ -150,7 +146,6 @@ void savePayment(){
 
         for (int i = 0; i < payCount; i++) {
          outPaymentFile << payList[i].paymentID << ","
-                        << payList[i].appID << ","
                         << payList[i].studentID << ","
                         << payList[i].paymentStatus << ","
                         << payList[i].paymentDate << ","

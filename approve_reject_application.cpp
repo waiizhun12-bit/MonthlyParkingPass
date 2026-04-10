@@ -2,6 +2,7 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <ctime>
 #include <sstream>
 #include "system.h"
 
@@ -129,6 +130,3 @@ int approveRejectApps(){
     return 0;
 }
 
-/*int verifyPayment(){
-
-} */

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "system.h" 
 using namespace std;
 
 void viewProfile();
@@ -17,7 +18,7 @@ void filterTransactionHistory();
 void showMonthEndRenewalAlert();
 
 
-void studentMenu(string studentID) {
+void studentMenu(int &step) {
     int choice;
     do {
         cout << "\n===== Student Main Menu =====\n";

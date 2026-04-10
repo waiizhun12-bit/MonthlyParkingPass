@@ -13,7 +13,7 @@ int main () {
         if (step == 1) login(step);
         if (step == 2) regis(step);
         if (step == 3) admin_menu(step);
-        if (step == 4) studentAuthMenu(step);
+        if (step == 4) studentMenu(step);
     }
 }
 

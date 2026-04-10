@@ -45,7 +45,7 @@ void login (int &step) {
 		if (fill == 3) {
 			split();
 		
-			string arr[] = {"Continue", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue", "admin", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 5)) {
 				case 1: step = 4; return;	// student menu
@@ -72,10 +72,7 @@ void regis (int &step) {
 	Student newStudent;
 
 	while (step == 2) {
-		header("Register");
-		
-		newStudent.userID = "User " + toString(studentCount + 1);	// Automaticlly generate User 1, User 2...Once have new user to register.
-		cout << "Your User ID is " << newStudent.userID << endl;	
+		header("Register");	
 		
 		if (fill >= 1) {
 			cout << "Student ID  : ";

@@ -12,11 +12,11 @@ struct Application {                                     // Fields for applicati
 };
 
 struct Student {
-        string userID, studentID, studentName, email, password, phone, faculty, nric, vehicleNo;
+        string studentID, studentName, email, password, phone, faculty, nric, vehicleNo;
 };
 
 struct Payment{
-        string paymentID, appID, studentID, paymentStatus, paymentDate;
+        string paymentID, studentID, paymentStatus, paymentDate;
         double amount;
 };
 
@@ -30,7 +30,6 @@ extern int appNo;
 
 extern Student studentList[MAX_STUDENT];
 extern int studentCount;
-extern int userNo;
 
 extern Payment payList[MAX_PAYMENTS];
 extern int payCount;
@@ -46,7 +45,6 @@ void regis (int &step); // Register
 int toInteger(const string& s);
 string toString(int value);
 
-<<<<<<< HEAD
 void admin_menu(int &step);
 void loadStudent();
 void saveStudent();
@@ -54,17 +52,10 @@ void loadApplication();
 void saveApplication();
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
-void studentAuthMenu(int &step);
-void manageStudent();
-=======
-void admin_menu(int &step);                     // Show admin menu
-void loadStudent();                             // Load student.txt
-void saveStudent();                             // Save student.txt
-void loadApplication();                         // Load application.txt
-void saveApplication();                         // Save application.txt
-void listPendingApplications(int &step);        // Show pending applications
-void monthEndAlter(int &step);                  // Show expire passes, and send alert to student
-void studentAuthMenu(int &step);                
->>>>>>> b232db939a58cea1723f0d8ec742a642fb1782cc
+void studentMenu (int &step);
+void verifyPayment();
+//void manageStudent();
+
+
 
 #endif
