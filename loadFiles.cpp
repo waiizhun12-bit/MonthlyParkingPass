@@ -5,13 +5,6 @@
 #include "system.h"
 using namespace std;
 
-int toInteger(const string& s){
-	stringstream ss(s);
-	int value = 0;
-	ss >> value;
-	return value;	
-}
-
 void saveApplication() {
     ofstream outApplicationFile("application.txt");
     if (!outApplicationFile.is_open()) return; 
@@ -118,14 +111,15 @@ void loadPayment(){
 
     while (getline(inPaymentFile, line) && payCount < MAX_PAYMENTS){
         stringstream ss(line); // use stringstream to split the data.
-
         string am;
 
         getline(ss, payList[payCount].paymentID, ',');
         getline(ss, payList[payCount].studentID, ',');
         getline(ss, payList[payCount].paymentStatus, ',');
         getline(ss, am, ',');
-        getline(ss, payList[payCount].paymentDate, ',');
+        getline(ss, payList[payCount].paymentDate);
+
+        payList[payCount].amount = am.empty() ? 0.0 : toDouble(am);
 
         // Avoid new registration overlap.
         if(!payList[payCount].paymentID.empty()){
@@ -146,8 +140,8 @@ void savePayment(){
          outPaymentFile << payList[i].paymentID << ","
                         << payList[i].studentID << ","
                         << payList[i].paymentStatus << ","
-                        << payList[i].paymentDate << ","
-                        << payList[i].amount << endl;
+                        << payList[i].amount << ","
+                        << payList[i].paymentDate << endl;
     }
     outPaymentFile.close();
 } 

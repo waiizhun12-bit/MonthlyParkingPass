@@ -6,30 +6,30 @@ using namespace std;
 
 void verifyPayment(int &step){
 			loadPayment();
-		
-					cout << "---------------------------------------------------------------" << endl;
-  					cout << "-            PAYMENT      VERIFICATION       LIST             -" << endl;
-    				cout << "---------------------------------------------------------------" << endl;
-					cout <<"| " << setw(5) << left << "Payment ID"
-            			 << " | " << setw(14) << left << "Student ID" 
+
+					cout << "---------------------------------------------------------------------" << endl;
+  					cout << "-                PAYMENT       VERIFICATION        LIST             -" << endl;
+    				cout << "---------------------------------------------------------------------" << endl;
+					cout <<"| " << setw(10) << left << "Payment ID"
+            			 << " | " << setw(10) << left << "Student ID" 
                 		 <<"  | " << setw(10) << left << "Payment Status"
 						 << " | " << setw(8) << left << "Amount"
-						 << " | " << setw(10) << left << "Payment Date"
+						 << " | " << setw(12) << left << "Payment Date"
                 		 << " |" << endl;
 					cout << "---------------------------------------------------------------" << endl;
 
 		for (int i = 0; i < payCount; i++){
-			if (payList[i].paymentStatus == "Paid" || payList[i].paymentStatus == "UNPAID")
+			if (payList[i].paymentStatus == "PAID" || payList[i].paymentStatus == "UNPAID")
 			{
-				cout <<"| " << setw(5) << left << payList[i].paymentID
-            			 << " | " << setw(14) << left << payList[i].studentID
-                		 <<"  | " << setw(10) << left << payList[i].paymentStatus
-						 << " | " << setw(8) << left << payList[i].amount
-						 << " | " << setw(10) << left << payList[i].paymentDate
-                		 << " |" << endl;	
+				cout <<"| " << setw(10) << left << payList[i].paymentID
+            		 << " | " << setw(10) << left << payList[i].studentID
+                	 <<"  | " << setw(10) << left << payList[i].paymentStatus
+					 << " | " << setw(8) << left << payList[i].amount
+					 << " | " << setw(12) << left << payList[i].paymentDate
+                	 << " |" << endl;	
 			}
 		}
-				cout << "---------------------------------------------------------------" << endl;
+		cout << "---------------------------------------------------------------" << endl;
                 
         string pid;
 		
@@ -38,21 +38,16 @@ void verifyPayment(int &step){
 			cin >> pid;
 		}while(pid.empty());
 		        
-        int paymentAmount[payCount];
-		int payCount = 0;
+        int paymentAmount[MAX_APPLICATIONS];
 		
 		for (int i = 0; i < payCount; i++){
 			
-			if (payList[i].paymentID == pid && payList[i].paymentStatus == "Paid" || payList[i].paymentStatus == "Unpaid"){
+			if (payList[i].paymentID == pid && (payList[i].paymentStatus == "PAID" || payList[i].paymentStatus == "UNPAID")){
 					
 					paymentAmount[payCount] = i;
 					payCount++;
             }
-            
-            if (payList[i].paymentID != pid){
-            	cout << "\nInvalivd Payment ID, Please enter again: ";
-			}
-			
+    
 			if (payCount == 0){
 				cout << "No payment record found for " << pid << "." << endl;
 				return;
@@ -78,7 +73,8 @@ void verifyPayment(int &step){
 							  (local ->tm_mon + 1 < 10 ? "0" : "") + toString(local->tm_mon + 1) + "-" +
 							  (local ->tm_mday < 10 ? "0" : "") + toString(local->tm_mday);
 
-				payList[paymentAmount[0]].paymentDate;
+				payList[paymentAmount[0]].paymentDate = date;
+
 				cout <<"\n" << pid << "had verified successfully.\n";
 				savePayment();
 				break;

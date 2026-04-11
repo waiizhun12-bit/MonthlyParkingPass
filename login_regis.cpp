@@ -59,11 +59,6 @@ void login (int &step) {
 		}
 	}
 }
-string toString(int value){
-	stringstream ss;
-	ss << value;
-	return ss.str();
-}
 
 void regis (int &step) {
 	loadStudent();

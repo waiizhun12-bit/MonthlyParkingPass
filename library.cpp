@@ -59,3 +59,23 @@ void invalid (void) {
 	
 	//system("cls");
 }
+
+int toInteger(const string& s){
+	stringstream ss(s);
+	int value = 0;
+	ss >> value;
+	return value;	
+}
+
+string toString(int value){
+	stringstream ss;
+	ss << value;
+	return ss.str();
+}
+
+double toDouble(const string& str) {
+    stringstream ss(str);
+    double result;
+    ss >> result;
+    return result;
+}

@@ -44,6 +44,7 @@ void login (int &step); // Login
 void regis (int &step); // Register
 int toInteger(const string& s);
 string toString(int value);
+double toDouble(const string& str);
 
 void admin_menu(int &step);
 void loadStudent();
