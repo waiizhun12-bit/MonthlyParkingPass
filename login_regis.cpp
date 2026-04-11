@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cstdlib>
 #include "system.h"
 using namespace std;
 
@@ -8,7 +9,7 @@ void login (int &step); // Login
 void regis (int &step); // Register
 
 void login (int &step) {
-
+	clearScreen();
 	loadStudent();
 
 	int fill = 1;	
@@ -61,6 +62,7 @@ void login (int &step) {
 }
 
 void regis (int &step) {
+	clearScreen();
 	loadStudent();
 	
 	int fill = 1;
@@ -165,8 +167,6 @@ void regis (int &step) {
 				case 4: step = -1; break;
 				default: invalid(); break;
 			}
-			
-			//system("cls");
 		}
 	}
 }

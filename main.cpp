@@ -15,6 +15,7 @@ int main () {
         if (step == 3) admin_menu(step);
         if (step == 4) studentMenu(step);
     }
+    return 0;
 }
 
 void menu (int &step) {

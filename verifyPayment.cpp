@@ -1,63 +1,78 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+#include <cstdlib>
 #include "system.h"
 using namespace std;
 
 void verifyPayment(int &step){
-			loadPayment();
-
-					cout << "---------------------------------------------------------------------" << endl;
-  					cout << "-                PAYMENT       VERIFICATION        LIST             -" << endl;
-    				cout << "---------------------------------------------------------------------" << endl;
-					cout <<"| " << setw(10) << left << "Payment ID"
-            			 << " | " << setw(10) << left << "Student ID" 
-                		 <<"  | " << setw(10) << left << "Payment Status"
-						 << " | " << setw(8) << left << "Amount"
-						 << " | " << setw(12) << left << "Payment Date"
-                		 << " |" << endl;
-					cout << "---------------------------------------------------------------" << endl;
+	
+	while (step == 3) {
+	clearScreen();
+	loadPayment();
+		
+		cout << "---------------------------------------------------------------------" << endl;
+  		cout << "-                PAYMENT       VERIFICATION        LIST             -" << endl;
+    	cout << "---------------------------------------------------------------------" << endl;
+		cout <<"| " << setw(10) << left << "Payment ID"
+             << " | " << setw(10) << left << "Student ID" 
+             <<"  | " << setw(10) << left << "Payment Status"
+			 << " | " << setw(8) << left << "Amount"
+			 << " | " << setw(12) << left << "Payment Date"
+             << " |" << endl;
+		cout << "---------------------------------------------------------------------" << endl;
 
 		for (int i = 0; i < payCount; i++){
 			if (payList[i].paymentStatus == "PAID" || payList[i].paymentStatus == "UNPAID")
 			{
 				cout <<"| " << setw(10) << left << payList[i].paymentID
             		 << " | " << setw(10) << left << payList[i].studentID
-                	 <<"  | " << setw(10) << left << payList[i].paymentStatus
+                	 <<"  | " << setw(15) << left << payList[i].paymentStatus
 					 << " | " << setw(8) << left << payList[i].amount
 					 << " | " << setw(12) << left << payList[i].paymentDate
                 	 << " |" << endl;	
 			}
 		}
-		cout << "---------------------------------------------------------------" << endl;
-                
+		cout << "---------------------------------------------------------------------" << endl;
+
         string pid;
 		
 		do{
-			cout << "Enter payment ID (P1): ";
+			cout << "Enter payment ID (e.g. P1): ";
 			cin >> pid;
-		}while(pid.empty());
+
+			if (pid.length() < 2 || pid.length() > 4){
+				cout << "Payment ID invalid.\n";
+			}
+		}while(pid.length() < 2 || pid.length() > 4);
 		        
         int paymentAmount[MAX_APPLICATIONS];
+		int matchedCount = 0;
 		
 		for (int i = 0; i < payCount; i++){
 			
-			if (payList[i].paymentID == pid && (payList[i].paymentStatus == "PAID" || payList[i].paymentStatus == "UNPAID")){
+			if (payList[i].paymentID == pid && 
+			   (payList[i].paymentStatus == "PAID" || payList[i].paymentStatus == "UNPAID")){
 					
-					paymentAmount[payCount] = i;
-					payCount++;
+					paymentAmount[matchedCount] = i;
+					matchedCount++;
             }
-    
-			if (payCount == 0){
-				cout << "No payment record found for " << pid << "." << endl;
-				return;
-			}
 		}
-		
+
+		if (matchedCount == 0){
+				cout << "No payment record found for " << pid << "." << endl;
+				cout << "Press any button to continue...";
+				cin.ignore();
+				cin.get();
+				continue;
+		}
+
 		int select;
-		cout << "1. Confirm payment.\n";
-		cout << "2. Cancel.\n";
-		cout << "3. Back.\n";
+		cout << "\n1. Confirm payment.\n";
+		cout << "2. Cancel verification.\n";
+		cout << "3. Back to admin menu.\n";
+		cout << "4. Back to payment list.\n";
+		
 		cout << "Enter your choice: \n";
 		cin >> select;
 		
@@ -75,23 +90,38 @@ void verifyPayment(int &step){
 
 				payList[paymentAmount[0]].paymentDate = date;
 
-				cout <<"\n" << pid << "had verified successfully.\n";
+				cout <<"\n" << pid << " had verified successfully.\n";
 				savePayment();
-				break;
+
+				cout << "Press Enter back to payment list....";
+				cin.ignore();
+				cin.get();
+				continue;
 			}
 				
 			case 2:{ 
-				payList[paymentAmount[0]].paymentStatus = "UNVERIFIED";
-				cout << "Your payment status still UNPAID.";
-				savePayment();
-				break;
+				cout << "Verification cancelled. Payement Status remains."
+					 << payList[paymentAmount[0]].paymentStatus << "\n";
+				cout << "Press Enter back to payment list....";
+				cin.ignore();
+				cin.get();
+				continue;
 			}
-
-			default:{
+			case 3:{
+				cout << "Back to admin menu.\n";
 				step = 3;
-				cout << "Back to admin menu.";
 				return;
 			}
+			case 4:{	
+				continue;
+			}
+			default:{
+				cout << "Invalid choice.\n";
+                cout << "Press Enter to return to payment list...";
+                cin.ignore();
+                cin.get();
+                continue;
+            }
 		}
-		return;	
-	} 
+	}
+} 

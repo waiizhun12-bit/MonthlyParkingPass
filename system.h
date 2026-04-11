@@ -39,6 +39,7 @@ void header (string sub);
 void split (void);
 int option (string array[], int size);
 void invalid (void);
+void clearScreen();
 
 void login (int &step); // Login
 void regis (int &step); // Register

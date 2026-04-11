@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
 #include <limits>
 #include "system.h"
 using namespace std;
@@ -17,6 +18,10 @@ Payment payList[MAX_PAYMENTS];
 int payCount = 0;
 int payNo =1;
 
+void clearScreen(){
+
+	system("cls");
+}
 void split (void) {
 	cout << "--------------------------------------------------" << endl; 
 }
