@@ -50,10 +50,12 @@ void loadStudent();
 void saveStudent();
 void loadApplication();
 void saveApplication();
+void loadPayment();
+void savePayment();
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
 void studentMenu (int &step);
-void verifyPayment();
+void verifyPayment(int &step);
 //void manageStudent();
 
 

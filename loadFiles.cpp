@@ -17,7 +17,7 @@ void saveApplication() {
     if (!outApplicationFile.is_open()) return; 
 
     for (int i = 0; i < appCount; i++) {
-        outApplicationFile << appList[i].appID << ","
+    outApplicationFile  << appList[i].appID << ","
                         << appList[i].studentID << ","
                         << appList[i].studentName << ","
                         << appList[i].status << ","
@@ -33,6 +33,8 @@ void loadApplication() {
     if (!inApplicationFile.is_open()) return;
 
     string line;
+    appCount = 0;
+    appNo = 0;
 
     while (getline(inApplicationFile, line) && appCount < MAX_APPLICATIONS){
         stringstream ss(line); // use stringstream to split the data.
@@ -45,7 +47,7 @@ void loadApplication() {
         getline(ss, appList[appCount].status, ',');
         getline(ss, sm, ',');
         getline(ss, sy, ',');
-        getline(ss, dur, ',');
+        getline(ss, dur);
 
         appList[appCount].startMonth = sm.empty() ? 1 : toInteger(sm); // default to 1 if empty
         appList[appCount].startYear = sy.empty() ? 2026 : toInteger(sy); // default to 2026 if empty
@@ -102,10 +104,6 @@ void loadStudent(){
         getline(ss, studentList[studentCount].nric, ',');
         getline(ss, studentList[studentCount].vehicleNo, ',');
 
-        // Avoid new registration overlap.
-        if(!studentList[studentCount].studentID.empty()){
-            cout << "This student ID occured.";
-        }
         studentCount++;
     }
     inStudentFile.close();
@@ -126,13 +124,13 @@ void loadPayment(){
         getline(ss, payList[payCount].paymentID, ',');
         getline(ss, payList[payCount].studentID, ',');
         getline(ss, payList[payCount].paymentStatus, ',');
-        getline(ss, payList[payCount].paymentDate, ',');
         getline(ss, am, ',');
+        getline(ss, payList[payCount].paymentDate, ',');
 
         // Avoid new registration overlap.
         if(!payList[payCount].paymentID.empty()){
             int currentpaymentID = toInteger(payList[payCount].paymentID);
-            if (currentpaymentID > payNo) payNo = currentpaymentID; // update appNO to the highest number found in the file
+            if (currentpaymentID > payNo) payNo = currentpaymentID; 
         }
         payCount++;
     }

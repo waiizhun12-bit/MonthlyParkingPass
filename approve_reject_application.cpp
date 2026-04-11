@@ -8,29 +8,36 @@
 
 using namespace std;
 
-int listPendingApps();
 int approveRejectApps();
 
 void listPendingApplications(int &step){
 
     loadApplication();
-    listPendingApps();
 
     bool has_pending = false;
 
+        cout << "---------------------------------------------------------------" << endl;
+        cout << "-            LIST       PENDING        APPLICATIONS           -" << endl;
+        cout << "---------------------------------------------------------------" << endl;
+        cout <<"| " << setw(10) << left << "App ID" 
+             << " | " << setw(14) << left << "Student ID" 
+             << " | " << setw(16) << left << "Student Name" 
+             << " | " << setw(10) << left << "Status" 
+             << " |" << endl;
+            cout << "---------------------------------------------------------------" << endl;
+        
     for (int i = 0; i < appCount; i++){
-        if (appList[i].status == "Pending")
+        if (appList[i].status == "PENDING")
         {   
             has_pending = true;
-
-            cout <<"| " << setw(10) << left << appList[i].appID 
+            cout << "| " << setw(10) << left << appList[i].appID 
                  << " | " << setw(14) << left << appList[i].studentID 
                  << " | " << setw(16) << left << appList[i].studentName 
                  << " | " << setw(10) << left << appList[i].status 
                  << " |" << endl;
-        }
+        }   
     }
-
+            cout << "---------------------------------------------------------------" << endl;
     if (!has_pending){
         cout <<"No pending applications found." <<endl;
         cout << "\n1. Back to Admin Menu" << endl;
@@ -58,20 +65,6 @@ void listPendingApplications(int &step){
    
 }
 
-int listPendingApps(){
-    
-    cout << "---------------------------------------------------------------" << endl;
-    cout << "-            LIST       PENDING        APPLICATIONS           -" << endl;
-    cout << "---------------------------------------------------------------" << endl;
-    cout <<"| " << setw(10) << left << "App ID" 
-         << " | " << setw(14) << left << "Student ID" 
-         << " | " << setw(16) << left << "Student Name" 
-         << " | " << setw(10) << left << "Status" 
-         << " |" << endl;
-    cout << "---------------------------------------------------------------" << endl;
-
-    return 0;
-}
 int approveRejectApps(){
     string sid;
 
@@ -90,7 +83,7 @@ int approveRejectApps(){
     int pendingCount = 0;
 
     for (int i = 0; i < appCount; i++){
-        if (appList[i].studentID == sid  && appList[i].status == "Pending")
+        if (appList[i].studentID == sid  && appList[i].status == "PENDING")
         {
             pendingAmount[pendingCount] = i;
             pendingCount++;
@@ -111,13 +104,13 @@ int approveRejectApps(){
     
     switch (pilih){
         case 1:
-            appList[pendingAmount[0]].status = "Approved";
+            appList[pendingAmount[0]].status = "APPROVED";
             cout << "Application approved for Student ID " << sid << "." << endl;
             saveApplication();
             break;
 
         case 2:
-            appList[pendingAmount[0]].status = "Rejected";
+            appList[pendingAmount[0]].status = "REJECTED";
             cout << "Application rejected for Student ID " << sid << "." << endl;
             saveApplication();
             break;
