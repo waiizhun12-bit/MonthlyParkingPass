@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 #include <limits>
 #include "system.h"
 using namespace std;

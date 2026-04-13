@@ -61,10 +61,10 @@ void verifyPayment(int &step){
 
 		if (matchedCount == 0){
 				cout << "No payment record found for " << pid << "." << endl;
-				cout << "Press any button to continue...";
+				cout << "Press any button back to admin menu...";
 				cin.ignore();
 				cin.get();
-				continue;
+				return;
 		}
 
 		int select;

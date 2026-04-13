@@ -7,7 +7,7 @@ int admin_dashboard();
 
 void admin_menu(int &step)   
 {
-    while (step == 3) {
+    while (step == -1) {
         int selection = admin_dashboard();   
 
         switch (selection)
@@ -23,7 +23,7 @@ void admin_menu(int &step)
             case 4:
                 verifyPayment(step);
                 break;
-            case 5:
+            case 6:
                 step = 0;    // back to main menu
                 return;
 

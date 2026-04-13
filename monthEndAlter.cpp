@@ -7,6 +7,7 @@ using namespace std;
 
 void monthEndAlter(int &step){
 
+    clearScreen();
     loadApplication();
 
     time_t t = time(NULL);                   // Get the current time (in second)

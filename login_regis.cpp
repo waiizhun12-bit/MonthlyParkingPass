@@ -49,14 +49,14 @@ void login (int &step) {
 			string arr[] = {"Continue", "admin", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 5)) {
-				case 1: step = 4; return;	// student menu
-				case 2: step = 3; return;	// admin menu
+				case 1: step = 3; return;	// student menu
+				case 2: step = -1; return;	// admin menu
 				case 3: fill = 1; break;	// Redo
 				case 4: step = 0; return;	// main menu
-				case 5: step = -1; break;	// exit
+				case 5: step = 99; break;	// exit
 				default: invalid(); break;
 			}
-			//system("cls");
+			clearScreen();
 		}
 	}
 }
@@ -161,12 +161,13 @@ void regis (int &step) {
 			string arr[] = {"Continue to Student Menu", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = 4; break;
+				case 1: step = 3; break;
 				case 2: fill = 1; break;
 				case 3: step -= 1; break;
-				case 4: step = -1; break;
+				case 4: step = 99; break;
 				default: invalid(); break;
 			}
+			clearScreen();
 		}
 	}
 }
