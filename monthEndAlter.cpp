@@ -45,7 +45,7 @@ void monthEndAlter(int &step){
 
     if (expirePasses > 0){
         saveApplication();
-        cout << "\n Updated Complete." << expirePasses << " passes were altered to Expired. ";
+        cout << "\n Updated Complete." << expirePasses << " passes were changed to Expired. ";
         cout << "Application.txt has been updated. \n";
     
     }else{

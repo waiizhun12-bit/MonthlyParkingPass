@@ -5,10 +5,10 @@
 #include "system.h"
 using namespace std;
 
-void login (int &step); // Login
+void login (int &step, string &currStudentID); // Login
 void regis (int &step); // Register
 
-void login (int &step) {
+void login (int &step, string &currStudentID) {
 	clearScreen();
 	loadStudent();
 
@@ -41,6 +41,10 @@ void login (int &step) {
 				cin >> newUser.password;
 				++fill;
 			} else cout << newUser.password << endl;
+		}
+
+		if (studentList[MAX_STUDENT].email == newUser.email && studentList[MAX_STUDENT].password == newUser.password){
+			currStudentID = studentList[MAX_STUDENT].studentID;
 		}
 		
 		if (fill == 3) {

@@ -19,6 +19,8 @@ Payment payList[MAX_PAYMENTS];
 int payCount = 0;
 int payNo =1;
 
+string currStudentID = "";
+
 void clearScreen(){
 
 	system("cls");

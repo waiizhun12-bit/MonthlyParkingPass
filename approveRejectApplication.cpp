@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int approveRejectApps();
+void approveRejectApps();
 
 void listPendingApplications(int &step){
 
@@ -65,7 +65,7 @@ void listPendingApplications(int &step){
    
 }
 
-int approveRejectApps(){
+void approveRejectApps(){
     string sid;
 
     //validation for student ID format (7 digits, starts with 21-25)
@@ -92,7 +92,7 @@ int approveRejectApps(){
 
     if (pendingCount == 0){
         cout << "No pending applications found for Student ID " << sid << endl;
-        return 0;
+        return;
     }
 
     int pilih;
@@ -117,9 +117,9 @@ int approveRejectApps(){
         
         default:
             cout << "Back to main menu.";
-            return 0;    
+            return;    
         }
     
-    return 0;
+    return;
 }
 

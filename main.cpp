@@ -10,9 +10,9 @@ int main () {
 
     while (step >= 0) {
         if (step == 0) menu(step);
-        if (step == 1) login(step);
+        if (step == 1) login(step, currStudentID);
         if (step == 2) regis(step);
-        if (step == 3) studentMenu(step);
+        if (step == 3) studentMenu(step, currStudentID);
         if (step == -1) admin_menu(step);
     }
     return 0;

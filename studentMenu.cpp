@@ -18,9 +18,9 @@ void filterTransactionHistory();
 void showMonthEndRenewalAlert();
 
 
-void studentMenu(int &step) {
+void studentMenu(int &step, string &currStudentID) {
     int choice;
-    do {
+
         cout << "\n===== Student Main Menu =====\n";
         cout << "1. View Profile\n";
         cout << "2. Update Profile\n";
@@ -38,21 +38,58 @@ void studentMenu(int &step) {
         cin >> choice;
 
         switch (choice) {
-            case 1: viewProfile(); break;
-            case 2: updateProfile(); break;
-            case 3: resetPasswordStudent(); break;
-            case 4: applyRenewPass(); break;
-            case 5: passValidityChecker(); break;
-            case 6: renewPass(); break;
-            case 7: cancelPendingApplication(); break;
-            case 8: viewApplicationStatus(); break;
-            case 9: makePayment(); generateReceipt(); break;
-            case 10: viewTransactionHistory(); filterTransactionHistory(); break;
-            case 11: showMonthEndRenewalAlert(); break;
-            case 0: cout << "Logging out...\n"; break;
-            default: cout << "Invalid choice. Try again.\n";
+            case 1: 
+                    viewProfile(); 
+                    break;
+
+            case 2: 
+                    updateProfile(); 
+                    break;
+
+            case 3:
+                    resetPasswordStudent(); 
+                    break;
+
+            case 4: 
+                    applyRenewPass(); 
+                    break;
+
+            case 5: 
+                    passValidityChecker(); 
+                    break;
+            case 6: 
+                    renewPass(); 
+                    break;
+
+            case 7: 
+                    cancelPendingApplication();
+                    break;
+
+            case 8: 
+                    viewApplicationStatus(); 
+                    break;
+
+            case 9: 
+                    makePayment(); 
+                    generateReceipt(); 
+                    break;
+
+            case 10: 
+                    viewTransactionHistory(); 
+                    filterTransactionHistory(); 
+                    break;
+
+            case 11: 
+                    monthlyAlertStudent (step, currStudentID); 
+                    break;
+
+            case 0: 
+                    cout << "Logging out to main menu...\n"; 
+                    step = 0;
+                    break;
+
+            default: invalid();
         }
-    } while (choice != 0);
 }
 
 
@@ -82,9 +119,3 @@ void filterTransactionHistory() {
     cout << "Filtering transaction history...\n"; }
 void showMonthEndRenewalAlert() { 
     cout << "Showing month-end renewal alert...\n"; }
-
-/*int main() {
-    string studentID = "S12345"; 
-    studentMenu(studentID);
-    return 0;
-}*/

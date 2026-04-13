@@ -35,13 +35,15 @@ extern Payment payList[MAX_PAYMENTS];
 extern int payCount;
 extern int payNo;
 
+extern string currStudentID;
+
 void header (string sub);
 void split (void);
 int option (string array[], int size);
 void invalid (void);
 void clearScreen();
 
-void login (int &step); // Login
+void login (int &step, string &currStudentID); // Login
 void regis (int &step); // Register
 int toInteger(const string& s);
 string toString(int value);
@@ -56,8 +58,9 @@ void loadPayment();
 void savePayment();
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
-void studentMenu (int &step);
+void studentMenu (int &step, string &currStudentID);
 void verifyPayment(int &step);
+void monthlyAlertStudent (int &step, string &currStudentID);
 //void manageStudent();
 
 
