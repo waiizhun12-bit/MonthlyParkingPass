@@ -1,177 +1,201 @@
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <cstdlib>
 #include "system.h"
 using namespace std;
 
-void login (int &step, string &currStudentID); // Login
-void regis (int &step); // Register
+void login(int &step, string &currID); // Login
+void regis(int &step); // Register
 
-void login (int &step, string &currStudentID) {
+void login (int &step, string &currID) {
 	clearScreen();
 	loadStudent();
-
-	int fill = 1;	
-	Student newUser;
+	string email, password;
 	bool admin;
+	int fill = 1;
 
 	while (step == 1) {
 		header("Login");
 		
 		if (fill >= 1) {
-			cout << "Email   : ";
+			cout << "Email    : ";
 			
 			if (fill == 1) {
-				cin >> newUser.email;
+				cin >> email;
 				
-				if (newUser.email.find("@1utar.my") != string::npos) {
-					++fill;
-				} else if (newUser.email.find("@utar.edu.my") != string::npos) {
+				if (email.find("@1utar.my") != string::npos) {
+					fill++;
+				} else if (email.find("@utar.edu.my") != string::npos) {
 					admin = true;
-					++fill;
+					fill++;
 				} else invalid();
-			} else cout << newUser.email << endl;
+			} else 
+				cout << email << endl;
 		} 
 		
 		if (fill >= 2) {
-			cout << "Password: ";
+			cout << "Password : ";
 			
 			if (fill == 2) {
-				cin >> newUser.password;
-				++fill;
-			} else cout << newUser.password << endl;
-		}
-
-		if (studentList[MAX_STUDENT].email == newUser.email && studentList[MAX_STUDENT].password == newUser.password){
-			currStudentID = studentList[MAX_STUDENT].studentID;
+				cin >> password;
+				fill++;
+			} else 
+				cout << password << endl;
 		}
 		
+		for (int i = 0; i < studentCount; i++) {
+    		if (email == studentList[i].email && password == studentList[i].password) {
+        	currID = studentList[i].id;
+       		break;
+    	}
+}
+
 		if (fill == 3) {
 			split();
 		
-			string arr[] = {"Continue", "admin", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
-			switch (option(arr, 5)) {
-				case 1: step = 3; return;	// student menu
-				case 2: step = -1; return;	// admin menu
-				case 3: fill = 1; break;	// Redo
-				case 4: step = 0; return;	// main menu
-				case 5: step = 99; break;	// exit
+			switch (option(arr, 4)) {
+				case 1: step = (admin) ? -1 : 3; break;	// Student Menu
+				case 2: fill = 1; break;				// Redo
+				case 3: step -= 1; break;				// Back
+				case 4: step = 99; break;				// Exit
 				default: invalid(); break;
 			}
-			clearScreen();
+			system("cls");
 		}
 	}
 }
 
-void regis (int &step) {
-	clearScreen();
-	loadStudent();
-	
+void regis(int &step) {
+	string name, nric, p_num, id, faculty, email, password;
 	int fill = 1;
-	Student newStudent;
 
 	while (step == 2) {
-		header("Register");	
+		header("Register");
 		
 		if (fill >= 1) {
-			cout << "Student ID  : ";
+			cout << "Personal Information\n";
+			split();
+			
+			cout << "Full Name (as per IC)      : ";
 			
 			if (fill == 1) {
-				cin >> newStudent.studentID;
-				++fill;
-			} else cout << newStudent.studentID << endl;
+				cin.ignore();
+				getline(cin, name);
+				
+				if (name == "") 
+					invalid();
+				else 
+					fill++;
+			} else 
+				cout << name << endl;
 		}
 		
 		if (fill >= 2) {
-			cout << "Name   : ";
+			cout << "NRIC Number (without '-')  : ";
 			
 			if (fill == 2) {
-				cin >> newStudent.studentName;
-				++fill;
-			} else cout << newStudent.studentName << endl;
+				cin >> nric;
+							
+				if (nric.size() == 12 ) {
+					fill++;
+				} else invalid();
+			} else 
+				cout << nric << endl;
 		}
 		
 		if (fill >= 3) {
-			cout << "Email       : ";
+			cout << "Phone Number (without '-') : ";
 			
 			if (fill == 3) {
-				cin >> newStudent.email;
-				if (newStudent.email.find("@1utar.my") != string::npos) {
-					++fill;
+				cin >> p_num;
+				
+				if (p_num.size() >= 10 || p_num.size() <= 11) {
+					fill++;
 				} else invalid();
-			} else cout << newStudent.email << endl;			
+			} else 
+				cout << p_num << endl;
 		}
 		
 		if (fill >= 4) {
-			cout << "Password    : ";
+			split();
+			cout << "Academic Information";
+			split();
+			
+			cout << "Student ID (in full)       : ";
 			
 			if (fill == 4) {
-				cin >> newStudent.password;
-				++fill;
-			} else cout << newStudent.password << endl;
+				cin >> id;
+				fill++;
+			} else 
+				cout << id << endl;
 		}
 		
 		if (fill >= 5) {
-			cout << "Phone number	: ";
+			cout << "Faculty (in abbreviation)  : ";
 			
 			if (fill == 5) {
-				cin >> newStudent.phone;
+				cin.ignore();
+				getline(cin, faculty);
 				
-				if (newStudent.phone.size() >= 10 || newStudent.phone.size() <= 11) {
-					++fill;
+				if (faculty == "")
+					invalid();
+				else
+					fill++;
+			} else
+				cout << faculty << endl;
+		}
+
+		if (fill >= 6) {
+			cout << "\n---------------Security Information---------------\n";
+			
+			cout << "Email                      : ";
+			
+			if (fill == 6) {
+				cin >> email;
+				if (email.find("@1utar.my") != string::npos) {
+					fill++;
 				} else invalid();
-			} else cout << newStudent.phone << endl;
+			} else 
+				cout << email << endl;	
 		}
 		
-		if (fill >= 6) {
-			cout << "Faculty	: ";
-
-			if (fill == 6) {
-				cin >> newStudent.faculty;
-				++fill;
-			}else cout << newStudent.faculty << endl;
-		}
-
 		if (fill >= 7) {
-			cout << "NRIC number	: ";
+			cout << "Password                   : ";
 			
 			if (fill == 7) {
-				cin >> newStudent.nric;
-							
-				if (newStudent.nric.size() == 12 ) {
-					++fill;
-				} else invalid();
-			} else cout << newStudent.nric << endl;
-		}
-
-		if (fill >= 8) {
-			cout << "Vehicle Number	: ";
-
-			if (fill == 8) {
-				cin >> newStudent.vehicleNo;
-				++fill;
-			} else cout << newStudent.vehicleNo << endl;
+				cin >> password;
+				fill++;
+			} else 
+				cout << password << endl;
 		}
 		
-		studentList[studentCount] = newStudent;
-		studentCount++;
-		saveStudent();
-		
-		if (fill == 9) {
+		if (fill == 8) {
 			split();
 		
-			string arr[] = {"Continue to Student Menu", "Redo", "Back", "Exit"};
+			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = 3; break;
-				case 2: fill = 1; break;
-				case 3: step -= 1; break;
-				case 4: step = 99; break;
+				case 1: {
+					STUDENT s;
+					s.name = name;
+					s.nric = nric;
+					s.p_num = p_num;
+					s.id = id;
+					s.faculty = faculty;
+					s.email = email;
+					s.password = password;
+					step = 4; 				// Student Menu
+					break;	
+				}
+				case 2: fill = 1; break;	// Register
+				case 3: step -= 1; break;	// Main Menu
+				case 4: step = 99; break;	// Exit
 				default: invalid(); break;
 			}
-			clearScreen();
+			
+			system("cls");
 		}
 	}
 }

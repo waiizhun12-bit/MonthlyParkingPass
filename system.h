@@ -11,8 +11,8 @@ struct Application {                                     // Fields for applicati
         int duration;                                    // Duration 1-3 months  
 };
 
-struct Student {
-        string studentID, studentName, email, password, phone, faculty, nric, vehicleNo;
+struct STUDENT {
+        string name, nric, p_num, id, faculty, email, password, vehicleNo;
 };
 
 struct Payment{
@@ -28,14 +28,14 @@ extern Application appList[MAX_APPLICATIONS];
 extern int appCount;
 extern int appNo;
 
-extern Student studentList[MAX_STUDENT];
+extern STUDENT studentList[MAX_STUDENT];
 extern int studentCount;
 
 extern Payment payList[MAX_PAYMENTS];
 extern int payCount;
 extern int payNo;
 
-extern string currStudentID;
+extern string currID;
 
 void header (string sub);
 void split (void);
@@ -43,26 +43,27 @@ int option (string array[], int size);
 void invalid (void);
 void clearScreen();
 
-void login (int &step, string &currStudentID); // Login
-void regis (int &step); // Register
-int toInteger(const string& s);
-string toString(int value);
-double toDouble(const string& str);
-
-void admin_menu(int &step);
 void loadStudent();
 void saveStudent();
 void loadApplication();
 void saveApplication();
 void loadPayment();
 void savePayment();
+
+void login (int &step, string &currID); // Login
+void regis (int &step); // Register
+int toInteger(const string& s);
+string toString(int value);
+double toDouble(const string& str);
+
+void admin_menu(int &step);
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
-void studentMenu (int &step, string &currStudentID);
 void verifyPayment(int &step);
-void monthlyAlertStudent (int &step, string &currStudentID);
 //void manageStudent();
 
+void studentMenu (int &step, string &currID);
+void viewStatus (int &step, string &currID);
 
 
 #endif

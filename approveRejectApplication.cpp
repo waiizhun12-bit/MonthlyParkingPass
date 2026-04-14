@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <fstream>
-#include <ctime>
-#include <sstream>
 #include "system.h"
 
 using namespace std;

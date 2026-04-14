@@ -65,13 +65,13 @@ void saveStudent() {
     } 
 
     for (int i = 0; i < studentCount; i++) {
-     outStudentFile << studentList[i].studentID << ","
-                    << studentList[i].studentName << ","
+     outStudentFile << studentList[i].name << ","
+                    << studentList[i].nric << ","
+                    << studentList[i].p_num << ","
+                    << studentList[i].id << ","
+                    << studentList[i].faculty << ","
                     << studentList[i].email << ","
                     << studentList[i].password << ","
-                    << studentList[i].phone << ","
-                    << studentList[i].faculty << ","
-                    << studentList[i].nric << ","
                     << studentList[i].vehicleNo << endl;   
     }
     outStudentFile.close();
@@ -88,13 +88,13 @@ void loadStudent(){
     while (getline(inStudentFile, line) && studentCount < MAX_STUDENT){
         stringstream ss(line); // use stringstream to split the data.
 
-        getline(ss, studentList[studentCount].studentID, ',');
-        getline(ss, studentList[studentCount].studentName, ',');
+        getline(ss, studentList[studentCount].name, ',');
+        getline(ss, studentList[studentCount].nric, ',');
+        getline(ss, studentList[studentCount].p_num, ',');
+        getline(ss, studentList[studentCount].id, ',');
+        getline(ss, studentList[studentCount].faculty, ',');
         getline(ss, studentList[studentCount].email, ',');
         getline(ss, studentList[studentCount].password, ',');
-        getline(ss, studentList[studentCount].phone, ',');
-        getline(ss, studentList[studentCount].faculty, ',');
-        getline(ss, studentList[studentCount].nric, ',');
         getline(ss, studentList[studentCount].vehicleNo, ',');
 
         studentCount++;

@@ -10,9 +10,9 @@ int main () {
 
     while (step >= 0) {
         if (step == 0) menu(step);
-        if (step == 1) login(step, currStudentID);
+        if (step == 1) login(step, currID);
         if (step == 2) regis(step);
-        if (step == 3) studentMenu(step, currStudentID);
+        if (step == 3) studentMenu(step, currID);
         if (step == -1) admin_menu(step);
     }
     return 0;
@@ -26,7 +26,7 @@ void menu (int &step) {
     switch (option(arr, 3)) {
         case 1: step = 1; break;
         case 2: step = 2; break;
-        case 3: step = 99; break;
+        case 3: step = 99; break;   // exit
         default: invalid(); break;
     }
 }

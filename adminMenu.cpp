@@ -28,7 +28,7 @@ void admin_menu(int &step)
                 return;
 
             default:
-                cout << "Invalid choice.\n";
+                invalid();
                 break;
         }
     }

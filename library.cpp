@@ -11,7 +11,7 @@ Application appList[MAX_APPLICATIONS];
 int appCount = 0;
 int appNo = 1;
 
-Student studentList[MAX_STUDENT];
+STUDENT studentList[MAX_STUDENT];
 int studentCount = 0;
 int userNo = 1;
 
@@ -19,7 +19,7 @@ Payment payList[MAX_PAYMENTS];
 int payCount = 0;
 int payNo =1;
 
-string currStudentID = "";
+string currID = " ";
 
 void clearScreen(){
 
@@ -53,7 +53,7 @@ int option (string array[], int size) {
 	cin >> opt;
 	
 	if (opt > 0 && opt <= size) {
-		//system("cls");
+		system("cls");
 		return opt;
 	} else return 0;
 }
@@ -65,7 +65,7 @@ void invalid (void) {
 	cin.ignore();
 	cin.get();
 	
-	//system("cls");
+	system("cls");
 }
 
 int toInteger(const string& s){
