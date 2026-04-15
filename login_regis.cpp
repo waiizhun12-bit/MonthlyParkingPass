@@ -11,7 +11,7 @@ void login (int &step, string &currID) {
 	clearScreen();
 	loadStudent();
 	string email, password;
-	bool admin;
+	bool admin = false;
 	int fill = 1;
 
 	while (step == 1) {
