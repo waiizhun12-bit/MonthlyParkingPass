@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <iomanip>
+#include <sstream>
 #include "system.h"
 
 using namespace std;
@@ -38,6 +39,7 @@ void viewStatus(int &step, string &currID) {        //  maybe need to replace cu
     }
 
     cout << "\nPress Enter back to student menu...";
-    cin.ignore(std :: numeric_limits<stringstream>:: max(), '\n');
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }

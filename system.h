@@ -5,7 +5,7 @@
 using namespace std;
 
 struct Application {                                     // Fields for application.txt
-        string appID, studentID, studentName, status;    // Status are Pending, Approved, Rejected, Expired
+        string appID, studentID, studentName, status, paymentMethod;    // Status are Pending, Approved, Rejected, Expired
         int startMonth;                                  // 1-12
         int startYear;                                   // e.g. 2024
         int duration;                                    // Duration 1-3 months  
@@ -16,7 +16,7 @@ struct STUDENT {
 };
 
 struct Payment{
-        string paymentID, studentID, paymentStatus, paymentDate;
+        string paymentID, studentID, paymentStatus, paymentDate, paymentMethod;
         double amount;
 };
 
@@ -64,6 +64,6 @@ void verifyPayment(int &step);
 
 void studentMenu (int &step, string &currID);
 void viewStatus (int &step, string &currID);
-
+void applyRenewPasses(int &step, string &currID);
 
 #endif

@@ -40,7 +40,7 @@ void studentMenu(int &step, string &currID) {
                     break;
 
             case 4: 
-                    //applyRenewPass(); 
+                    applyRenewPasses(step, currID); 
                     break;
 
             case 5: 
