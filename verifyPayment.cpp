@@ -7,7 +7,7 @@ using namespace std;
 
 void verifyPayment(int &step){
 	
-	while (step == 3) {
+	while (step == -1) {
 	clearScreen();
 	loadPayment();
 		
@@ -38,7 +38,7 @@ void verifyPayment(int &step){
         string pid;
 		
 		do{
-			cout << "Enter payment ID (e.g. P1): ";
+			cout << "Enter payment ID: ";
 			cin >> pid;
 
 			if (pid.length() < 2 || pid.length() > 4){

@@ -120,7 +120,7 @@ void regis(int &step) {
 		
 		if (fill >= 4) {
 			split();
-			cout << "Academic Information";
+			cout << "Academic Information" << endl;
 			split();
 			
 			cout << "Student ID (in full)       : ";
@@ -186,7 +186,7 @@ void regis(int &step) {
 					s.faculty = faculty;
 					s.email = email;
 					s.password = password;
-					step = 4; 				// Student Menu
+					step = 3; 				// Student Menu
 					break;	
 				}
 				case 2: fill = 1; break;	// Register
