@@ -43,7 +43,7 @@ void studentMenu(int &step, string &currID) {
                     break;
 
             case 5: 
-                    //passValidityChecker(); 
+                    passValidityChecker(step, currID); 
                     break;
 
             case 6: 
