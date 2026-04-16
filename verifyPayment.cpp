@@ -102,14 +102,13 @@ void verifyPayment(int &step){
 			case 2:{ 
 				cout << "Verification cancelled. Payement Status remains."
 					 << payList[paymentAmount[0]].paymentStatus << "\n";
-				cout << "Press Enter back to payment list....";
-				cin.ignore();
-				cin.get();
-				continue;
+				cout << "Press Enter back to admin menu...." << endl;
+				step = -1;
+				return;
 			}
 			case 3:{
 				cout << "Back to admin menu.\n";
-				step = 3;
+				step = -1;
 				return;
 			}
 			case 4:{	

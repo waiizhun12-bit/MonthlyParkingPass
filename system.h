@@ -60,7 +60,7 @@ void admin_menu(int &step);
 void listPendingApplications(int &step);
 void monthEndAlter(int &step);
 void verifyPayment(int &step);
-//void manageStudent();
+void manageStudents(int &step);
 
 void studentMenu (int &step, string &currID);
 void passValidityChecker(int &step, string &currID);

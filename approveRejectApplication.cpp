@@ -104,12 +104,14 @@ void approveRejectApps(){
             appList[pendingAmount[0]].status = "APPROVED";
             cout << "Application approved for Student ID " << sid << "." << endl;
             saveApplication();
+            clearScreen();
             break;
 
         case 2:
             appList[pendingAmount[0]].status = "REJECTED";
             cout << "Application rejected for Student ID " << sid << "." << endl;
             saveApplication();
+            clearScreen();
             break;
         
         default:

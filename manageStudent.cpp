@@ -1,116 +1,136 @@
-/* #include <iostream>
-#include <string>
+#include <iostream>
+#include <iomanip>
+#include <limits>
 #include "system.h"
+
 using namespace std;
 
+void searchStudents(int &step);
+void resetStudentPassword(int &step);
 
-void manageStudents();
-void searchStudents();
-void toggleStudentStatus();
-void resetStudentPassword();
-
-void manageStudents() {
+void manageStudents(int &step){
     int choice;
 
-    do {
-        cout << "\n===== MANAGE STUDENTS =====\n";
-        cout << "1. Search Student\n";
-        cout << "2. Activate/Deactivate Student\n";
-        cout << "3. Reset Student Password\n";
+    while (step == -1){
+        clearScreen();
+
+        cout << "-------------------------------------------------" << endl;
+        cout << "-                MANAGE STUDENTS                -" << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << "1. Search Students\n";
+        cout << "2. Reset Student Password\n";
         cout << "0. Back\n";
-        cout << "Enter choice: ";
+        cout << "Enter your choice: ";
         cin >> choice;
 
-        switch (choice) {
+        switch(choice){
             case 1:
-                searchStudents();
+                searchStudents(step);
                 break;
+
             case 2:
-                toggleStudentStatus();
+                resetStudentPassword(step);
                 break;
-            case 3:
-                resetStudentPassword();
-                break;
+
             case 0:
-                cout << "Returning...\n";
-                break;
+                clearScreen();
+                return;
+
             default:
-                cout << "Invalid choice!\n";
+                invalid();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.get();
+                break;
         }
-
-    } while (choice != 0);
-}
-
-void searchStudents() {
-    string studentId;
-    cout << "\nEnter Student ID: ";
-    cin >> studentId;
-
-    bool found = false;
-
-    for (int i = 0; i < studentCount; i++) {
-        if (studentList[studentCount].studentID == studentId) {
-            cout << "\nStudent Found:\n";
-            cout << "ID: " << studentList[studentCount].studentID << endl;
-            cout << "Name: " << studentList[studentCount].studentName << endl;
-            cout << "Status: " << (studentList[studentCount].isActive ? "Active" : "Inactive") << endl;
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        cout << "Student not found.\n"; 
     }
 }
 
-void toggleStudentStatus() {
-    string studentId;
-    cout << "\nEnter Student ID: ";
-    cin >> studentId;
+void searchStudents(int &step){
+    clearScreen();
+    loadStudent();
 
+    string keyword;
     bool found = false;
 
-    for (int i = 0; i < studentCount; i++) {
-        if (studentList[studentCount].studentID == studentId) {
-            studentList[studentCount].isActive = !studentList[studentCount].isActive;
+    cin.ignore(1000, '\n');
+    cout << "Enter Student ID or Name to search: ";
+    getline(cin, keyword);
 
-            cout << "Status updated to: "
-                 << (studentList[studentCount].isActive ? "Active" : "Inactive") << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "-                         SEARCH STUDENTS                          -" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "| " << setw(12) << left << "Student ID"
+         << " | " << setw(20) << left << "Name"
+         << " | " << setw(12) << left << "Phone"
+         << " | " << setw(10) << left << "Faculty"
+         << " |" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+
+    for (int i = 0; i < studentCount; i++){
+        if (studentList[i].id.find(keyword) != string::npos ||
+            studentList[i].name.find(keyword) != string::npos){
 
             found = true;
-            break;
+
+            cout << "| " << setw(12) << left << studentList[i].id
+                 << " | " << setw(20) << left << studentList[i].name
+                 << " | " << setw(12) << left << studentList[i].p_num
+                 << " | " << setw(10) << left << studentList[i].faculty
+                 << " |" << endl;
         }
     }
 
-    if (!found) {
-        cout << "Student not found.\n";
+    cout << "--------------------------------------------------------------------" << endl;
+
+    if (!found){
+        cout << "No student found." << endl;
     }
+
+    cout << "\nPress Enter to continue...";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 }
 
-void resetStudentPassword() {
-    string studentId;
-    cout << "\nEnter Student ID: ";
-    cin >> studentId;
+void resetStudentPassword(int &step){
+    clearScreen();
+    loadStudent();
 
+    string sid;
     bool found = false;
 
-    for (int i = 0; i < studentCount; i++) {
-        if (studentList[studentCount].studentID == studentId) {
-            string newPass;
+    cout << "Enter Student ID: ";
+    cin >> sid;
+
+    for (int i = 0; i < studentCount; i++){
+        if (studentList[i].id == sid){
+            found = true;
+
+            string newPass, confirmPass;
+
+            cout << "Student found: " << studentList[i].name << endl;
             cout << "Enter new password: ";
             cin >> newPass;
+            cout << "Confirm new password: ";
+            cin >> confirmPass;
 
-            studentList[studentCount] = newPass;
+            if (newPass == confirmPass){
+                studentList[i].password = newPass;
+                saveStudent();
+                cout << "Password reset successfully.\n";
+            } else {
+                cout << "Password confirmation does not match.\n";
+            }
 
-            cout << "Password reset successfully.\n";
-            found = true;
             break;
         }
     }
 
-    if (!found) {
-        cout << "Student not found.\n";
+    if (!found){
+        cout << "Student ID not found." << endl;
     }
+
+    cout << "\nPress Enter to continue...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 }
-*/
