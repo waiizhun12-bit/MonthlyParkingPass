@@ -14,13 +14,19 @@ void generateMonthlyReport(int &step){
     int approved = 0, pending = 0, rejected = 0;
     int paid = 0, unpaid = 0;
 
-    cout << "---------------------------------------------------------------------" << endl;
-    cout << "-                       GENERATE MONTHLY REPORT                     -"<< endl;
-    cout << "---------------------------------------------------------------------" << endl;
-    cout << "Enter month (1-12): ";
-    cin >> month;
-    cout << "Enter year: ";
-    cin >> year;
+    do{
+        cout << "---------------------------------------------------------------------" << endl;
+        cout << "-                       GENERATE MONTHLY REPORT                     -"<< endl;
+        cout << "---------------------------------------------------------------------" << endl;
+        cout << "Enter month (1-12): ";
+        cin >> month;
+
+        if (month > 12 && month < 1){
+            invalid();
+        }
+        cout << "Enter year: ";
+        cin >> year;
+    }while(month > 12 && month < 1);
 
     for (int i = 0; i < appCount; i++){
         if (appList[i].startMonth == month && appList[i].startYear == year){
@@ -69,4 +75,6 @@ void generateMonthlyReport(int &step){
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
+
+    clearScreen();
 }

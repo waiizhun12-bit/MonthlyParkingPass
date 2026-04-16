@@ -4,7 +4,7 @@
 #include "system.h"
 using namespace std;
 
-void monthEndAlertStudent(string &currID){
+void monthEndRenewalAlert(string &currID){
     clearScreen();
     loadApplication();
 

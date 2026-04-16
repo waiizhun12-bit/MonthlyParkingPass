@@ -59,9 +59,14 @@ void login (int &step, string &currID) {
 			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = (admin) ? -1 : 3; 
-						monthEndAlertStudent(currID);
-						break;	// Student Menu
+				case 1:
+					if (admin) {
+						step = -1;   // admin menu
+					} else {
+						step = 3;   // student menu
+						monthEndRenewalAlert(currID);
+					}
+					break;
 				case 2: fill = 1; break;				// Redo
 				case 3: step -= 1; break;				// Back
 				case 4: step = 99; break;				// Exit

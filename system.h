@@ -64,7 +64,6 @@ void generateMonthlyReport (int &step);
 void generateSummaryReport (int &step);
 void listPendingApplications (int &step);
 void verifyPayment (int &step);
-void manageStudents (int &step);
 
 void studentMenu (int &step, string &currID);
 void passValidityChecker (int &step, string &currID);
@@ -72,6 +71,6 @@ void cancelPendingApplication (int &step, string &currID);
 void viewTransactionHistory (int &step, string &currID);
 void viewStatus (int &step, string &currID);
 void applyRenewPasses (int &step, string &currID);
-void monthEndAlertStudent (string &currID);
+void monthEndRenewalAlert (string &currID);
 
 #endif

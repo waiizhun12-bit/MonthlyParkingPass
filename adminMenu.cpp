@@ -17,16 +17,17 @@ void admin_menu(int &step)
                 break;
 
             case 2:
-                generateMonthlyReport(step);
-
-            case 3:
                 verifyPayment(step);
                 break;
 
-            case 4:
-                manageStudents(step);
+            case 3:
+                generateMonthlyReport(step);
                 break;
-
+            
+            case 4:
+                generateSummaryReport(step);
+                break;
+                
             case 5:
                 step = 0;    // back to main menu
                 return;
@@ -47,10 +48,9 @@ int admin_dashboard()
     cout <<"---------------------------------------"<<endl;
     cout <<"- 1. Approve / Reject Applications    -"<<endl;
     cout <<"- 2. Verify Payment                   -"<<endl;
-    cout <<"- 3. Manage Students                  -"<<endl;
-    cout <<"- 4. Generate Monthly Report          -"<<endl;
-    cout <<"- 5. Generate Summary Report          -"<<endl;
-    cout <<"- 6. Exit                             -"<<endl;
+    cout <<"- 3. Generate Monthly Report          -"<<endl;
+    cout <<"- 4. Generate Summary Report          -"<<endl;
+    cout <<"- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";
 

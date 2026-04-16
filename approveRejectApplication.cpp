@@ -9,6 +9,7 @@ void approveRejectApps();
 
 void listPendingApplications(int &step){
 
+    clearScreen();
     loadApplication();
 
     bool has_pending = false;
@@ -47,17 +48,15 @@ void listPendingApplications(int &step){
     if (go == 2){
         step = 0;   // Back to main menu
         return;
-    }
-    if (go == 3){
-        step = -1;  // Exit 
+    }else if (go == 3){
+        step = 99;  // Exit 
         return;
     }
 
     // Back to Admin menu
-        step = 3;
+        step = -1;
         return;       
     }
-
     approveRejectApps();
    
 }

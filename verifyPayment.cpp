@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+#include <limits>
 #include <cstdlib>
 #include "system.h"
 using namespace std;
@@ -62,7 +63,8 @@ void verifyPayment(int &step){
 		if (matchedCount == 0){
 				cout << "No payment record found for " << pid << "." << endl;
 				cout << "Press any button back to admin menu...";
-				cin.ignore();
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cin.get();
 				return;
 		}
