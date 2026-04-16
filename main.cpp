@@ -8,10 +8,10 @@ void menu (int &step);  // Main menu
 int main () {
     int step = 0;
 
-    while (step >= 0) {
+    while (step != 99) {
         if (step == 0) menu(step);
         if (step == 1) login(step, currID);
-        if (step == 2) regis(step);
+        if (step == 2) regis(step,currID);
         if (step == 3) studentMenu(step, currID);
         if (step == -1) admin_menu(step);
     }

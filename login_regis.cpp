@@ -10,6 +10,7 @@ void regis(int &step); // Register
 void login (int &step, string &currID) {
 	clearScreen();
 	loadStudent();
+	
 	string email, password;
 	bool admin = false;
 	bool found = false;
@@ -43,10 +44,11 @@ void login (int &step, string &currID) {
 			} else 
 				cout << password << endl;
 		}
-		
+
 		for (int i = 0; i < studentCount; i++) {
     		if (email == studentList[i].email && password == studentList[i].password) {
         	currID = studentList[i].id;
+			found = true;
        		break;
     		}
 	    }
@@ -57,7 +59,9 @@ void login (int &step, string &currID) {
 			string arr[] = {"Continue", "Redo", "Back", "Exit"};
 			
 			switch (option(arr, 4)) {
-				case 1: step = (admin) ? -1 : 3; break;	// Student Menu
+				case 1: step = (admin) ? -1 : 3; 
+						monthEndAlertStudent(currID);
+						break;	// Student Menu
 				case 2: fill = 1; break;				// Redo
 				case 3: step -= 1; break;				// Back
 				case 4: step = 99; break;				// Exit
@@ -68,7 +72,10 @@ void login (int &step, string &currID) {
 	}
 }
 
-void regis(int &step) {
+void regis(int &step, string &currID) {
+	
+	loadApplication();
+
 	string name, nric, p_num, id, faculty, email, password;
 	int fill = 1;
 
@@ -171,6 +178,8 @@ void regis(int &step) {
 			} else 
 				cout << password << endl;
 		}
+
+		clearScreen();
 		
 		if (fill == 8) {
 			split();
@@ -191,8 +200,10 @@ void regis(int &step) {
 					studentList[studentCount] = s;
 					studentCount++;
 					saveStudent();
+
+					currID = id;
 					step = 3; 				// Student Menu
-					break;	
+					return;	
 				}
 				case 2: fill = 1; break;	// Register
 				case 3: step -= 1; break;	// Main Menu

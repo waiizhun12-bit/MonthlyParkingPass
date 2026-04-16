@@ -51,14 +51,13 @@ void loadPayment();
 void savePayment();
 
 void login (int &step, string &currID); // Login
-void regis (int &step); // Register
+void regis (int &step, string &currID); // Register
 int toInteger(const string& s);
 string toString(int value);
 double toDouble(const string& str);
 
 void admin_menu(int &step);
 void listPendingApplications(int &step);
-void monthEndAlter(int &step);
 void verifyPayment(int &step);
 void manageStudents(int &step);
 
@@ -68,5 +67,6 @@ void cancelPendingApplication(int &step, string &currID);
 void viewTransactionHistory(int &step, string &currID);
 void viewStatus (int &step, string &currID);
 void applyRenewPasses(int &step, string &currID);
+void monthEndAlertStudent(string &currID);
 
 #endif
