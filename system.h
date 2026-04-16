@@ -5,18 +5,21 @@
 using namespace std;
 
 struct Application {                                     // Fields for application.txt
-        string appID, studentID, studentName, status, paymentMethod, vehicleNo;    // Status are Pending, Approved, Rejected, Expired
+        string appID, studentID, studentName, 
+        status, paymentMethod, vehicleNo;    
         int startMonth;                                  // 1-12
         int startYear;                                   // e.g. 2024
         int duration;                                    // Duration 1-3 months  
 };
 
-struct STUDENT {
-        string name, nric, p_num, id, faculty, email, password, vehicleNo;
+struct STUDENT {                                         // Fields for student.txt
+        string name, nric, p_num, id, faculty,
+        email, password, vehicleNo;
 };
 
-struct Payment{
-        string paymentID, studentID, paymentStatus, paymentDate, paymentMethod;
+struct Payment{                                          // Fields for payment.txt
+        string paymentID, studentID, 
+        paymentStatus, paymentDate, paymentMethod;
         double amount;
 };
 
@@ -41,32 +44,34 @@ void header (string sub);
 void split (void);
 int option (string array[], int size);
 void invalid (void);
-void clearScreen();
+void clearScreen ();
 
-void loadStudent();
-void saveStudent();
-void loadApplication();
-void saveApplication();
-void loadPayment();
-void savePayment();
+void loadStudent ();
+void saveStudent ();
+void loadApplication ();
+void saveApplication ();
+void loadPayment ();
+void savePayment ();
 
 void login (int &step, string &currID); // Login
 void regis (int &step, string &currID); // Register
-int toInteger(const string& s);
-string toString(int value);
-double toDouble(const string& str);
+int toInteger (const string& s);
+string toString (int value);
+double toDouble (const string& str);
 
-void admin_menu(int &step);
-void listPendingApplications(int &step);
-void verifyPayment(int &step);
-void manageStudents(int &step);
+void admin_menu (int &step);
+void generateMonthlyReport (int &step);
+void generateSummaryReport (int &step);
+void listPendingApplications (int &step);
+void verifyPayment (int &step);
+void manageStudents (int &step);
 
 void studentMenu (int &step, string &currID);
-void passValidityChecker(int &step, string &currID);
-void cancelPendingApplication(int &step, string &currID);
-void viewTransactionHistory(int &step, string &currID);
+void passValidityChecker (int &step, string &currID);
+void cancelPendingApplication (int &step, string &currID);
+void viewTransactionHistory (int &step, string &currID);
 void viewStatus (int &step, string &currID);
-void applyRenewPasses(int &step, string &currID);
-void monthEndAlertStudent(string &currID);
+void applyRenewPasses (int &step, string &currID);
+void monthEndAlertStudent (string &currID);
 
 #endif

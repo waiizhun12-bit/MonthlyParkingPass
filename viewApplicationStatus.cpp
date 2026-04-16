@@ -110,27 +110,31 @@ void cancelPendingApplication(int &step, string &currID){
         return;
     }
 
-    bool cancelled = false;
+    bool deleted = false;
 
     for (int i = 0; i < appCount; i++){
         if (appList[i].studentID == currID &&
             appList[i].appID == cancelID &&
             appList[i].status == "PENDING"){
+            
+            for (int j = i; j < appCount; j++){
+                appList[j] = appList[j+1];
+            }
 
-            appList[i].status = "CANCELLED";
-            cancelled = true;
+            appCount--;
+            saveApplication();
+            deleted = true;
             break;
         }
     }
 
-    if (cancelled){
-        saveApplication();
-        cout << "Application " << cancelID << " cancelled successfully.\n";
+    if (deleted){
+        cout << "Application " << cancelID << " deleted successfully." << endl;
     } else {
-        cout << "Invalid App ID or application is not pending.\n";
+        cout << "Invalid App ID or application is not pending." << endl;
     }
 
-    cout << "\nPress Enter back to student menu...";
+    cout << "Press Enter back to student menu...";
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
