@@ -63,6 +63,9 @@ void verifyPayment(int &step);
 //void manageStudent();
 
 void studentMenu (int &step, string &currID);
+void passValidityChecker(int &step, string &currID);
+void cancelPendingApplication(int &step, string &currID);
+void viewTransactionHistory(int &step, string &currID);
 void viewStatus (int &step, string &currID);
 void applyRenewPasses(int &step, string &currID);
 
