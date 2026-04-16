@@ -19,7 +19,7 @@ Payment payList[MAX_PAYMENTS];
 int payCount = 0;
 int payNo =1;
 
-string currID = " ";
+string currID = "";
 
 void clearScreen(){
 

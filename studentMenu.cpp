@@ -18,8 +18,7 @@ void studentMenu(int &step, string &currID) {
         cout << "4. Apply/Renew Passport                                            -"<< endl;
         cout << "5. Check Passport Validity                                         -"<< endl;
         cout << "6. View / Cancel Pending Application                               -"<< endl;
-        cout << "7. Make Payment                                                    -"<< endl;
-        cout << "8. View Transaction History                                        -"<< endl;
+        cout << "7. View Transaction History                                        -"<< endl;
         cout << "0. Logout                                                          -"<< endl;
         cout << "--------------------------------------------------------------------" << endl;
         
@@ -51,15 +50,8 @@ void studentMenu(int &step, string &currID) {
                     viewStatus(step, currID); 
                     //cancelPendingApplication();
                         break;
-                
             case 7: 
-                    //makePayment(); 
-                    //generateReceipt(); 
-                    break;
-
-            case 8: 
                    // viewTransactionHistory(); 
-                   // filterTransactionHistory(); 
                     break;
 
             case 0: 

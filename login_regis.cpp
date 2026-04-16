@@ -12,6 +12,7 @@ void login (int &step, string &currID) {
 	loadStudent();
 	string email, password;
 	bool admin = false;
+	bool found = false;
 	int fill = 1;
 
 	while (step == 1) {
@@ -47,8 +48,8 @@ void login (int &step, string &currID) {
     		if (email == studentList[i].email && password == studentList[i].password) {
         	currID = studentList[i].id;
        		break;
-    	}
-}
+    		}
+	    }
 
 		if (fill == 3) {
 			split();
@@ -186,6 +187,10 @@ void regis(int &step) {
 					s.faculty = faculty;
 					s.email = email;
 					s.password = password;
+
+					studentList[studentCount] = s;
+					studentCount++;
+					saveStudent();
 					step = 3; 				// Student Menu
 					break;	
 				}

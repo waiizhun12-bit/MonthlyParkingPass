@@ -16,7 +16,9 @@ void saveApplication() {
                         << appList[i].status << ","
                         << appList[i].startMonth << ","
                         << appList[i].startYear << ","
-                        << appList[i].duration << endl;
+                        << appList[i].duration << ","
+                        << appList[i].paymentMethod << ","
+                        << appList[i].vehicleNo << endl;
     }
     outApplicationFile.close();
 }
@@ -41,6 +43,8 @@ void loadApplication() {
         getline(ss, sm, ',');
         getline(ss, sy, ',');
         getline(ss, dur);
+        getline(ss, appList[appCount].paymentMethod, ',');
+        getline(ss, appList[appCount].vehicleNo, ',');
 
         appList[appCount].startMonth = sm.empty() ? 1 : toInteger(sm); // default to 1 if empty
         appList[appCount].startYear = sy.empty() ? 2026 : toInteger(sy); // default to 2026 if empty
@@ -51,7 +55,6 @@ void loadApplication() {
             int currentAppNo = toInteger(appList[appCount].appID);
             if (currentAppNo > appNo) appNo = currentAppNo; // update appNO to the highest number found in the file
         }
-
         appCount++;
     }
     inApplicationFile.close();
@@ -65,7 +68,7 @@ void saveStudent() {
     } 
 
     for (int i = 0; i < studentCount; i++) {
-     outStudentFile << studentList[i].name << ","
+    outStudentFile << studentList[i].name << ","
                     << studentList[i].nric << ","
                     << studentList[i].p_num << ","
                     << studentList[i].id << ","

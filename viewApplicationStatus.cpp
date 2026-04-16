@@ -7,27 +7,41 @@
 using namespace std;
 
 void viewStatus(int &step, string &currID) {        //  maybe need to replace currID to something can know who is the user now
+   
     clearScreen();
     loadApplication();
 
     bool found = false;
 
+    cout << "-----------------------------------------------------------------------------------------" << endl;
+    cout << "-                            APPLICATION STATUS                                         -" << endl;
+    cout << "-----------------------------------------------------------------------------------------" << endl;
+    cout << "| " << setw(8)  << left << "App ID"
+         << " | " << setw(10) << left << "Student ID"
+         << " | " << setw(20) << left << "Student Name"
+         << " | " << setw(8) << left << "Status"
+         << " | " << setw(5)  << left << "Month"
+         << " | " << setw(6)  << left << "Year"
+         << " | " << setw(8)  << left << "Duration"
+         << " |" << endl;
+    cout << "-----------------------------------------------------------------------------------------" << endl;
+
     for (int i = 0; i < appCount; i++) {
         if (appList[i].studentID == currID) {
-            found = true;
-    cout << "------------------------------------------------------" << endl;
-    cout << "-             APPLICATION     STATUS                 -" << endl;
-    cout << "------------------------------------------------------" << endl;
-    cout << "- App ID: " << appList[i].appID                  << "-" << endl;
-    cout << "- Student ID: " << appList[i].studentID          << "-" << endl;
-    cout << "- Student Name: " << appList[i].studentName      << "-" << endl;
-    cout << "- Status: " << appList[i].status                 << "-" << endl;
-    cout << "- Month: " << appList[i].startMonth              << "-" << endl;
-    cout << "- Year: " << appList[i].startYear                << "-" << endl;
-    cout << "- Duration: " << appList[i].duration             << "-" << endl;
-    cout << "-----------------------------------------------------" << endl;
+        found = true;
+        
+         cout << "| " << setw(8)  << left << appList[i].appID
+                 << " | " << setw(10) << left << appList[i].studentID
+                 << " | " << setw(20) << left << appList[i].studentName
+                 << " | " << setw(10) << left << appList[i].status
+                 << " | " << setw(5)  << left << appList[i].startMonth
+                 << " | " << setw(6)  << left << appList[i].startYear
+                 << " | " << setw(8)  << left << appList[i].duration
+                 << " |" << endl;
         }
     }
+
+    cout << "-------------------------------------------------------------------------------" << endl;
 
     if (!found) {
         cout << "No application record found for this student." << endl;

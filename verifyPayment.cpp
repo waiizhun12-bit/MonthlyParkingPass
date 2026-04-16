@@ -41,10 +41,10 @@ void verifyPayment(int &step){
 			cout << "Enter payment ID: ";
 			cin >> pid;
 
-			if (pid.length() < 2 || pid.length() > 4){
+			if (pid.length() < 1 || pid.length() > 3){
 				cout << "Payment ID invalid.\n";
 			}
-		}while(pid.length() < 2 || pid.length() > 4);
+		}while(pid.length() < 1 || pid.length() > 3);
 		        
         int paymentAmount[MAX_APPLICATIONS];
 		int matchedCount = 0;
