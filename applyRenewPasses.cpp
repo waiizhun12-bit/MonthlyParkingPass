@@ -23,11 +23,10 @@ void applyPass(int &step, string &currID);
 void renewPass(int &step, string &currID);
 void makePayment(int &step, string &currID, string &name, string &vehicleNo,
                  int startMonth, int startYear, int duration);
-double calPaymentAmount(int duration);
 
 void applyRenewPasses(int &step, string &currID){
    
-    while (step ==3){
+    while (step == 3){
         clearScreen();
         loadApplication();
 
@@ -74,21 +73,27 @@ void applyPass(int &step, string &currID){
     cout << "---------------------------------------------------------------------" << endl;
     cout << "- Student ID: " << currID << endl;
 
-    cin.ignore(1000, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     cout << "- Enter student name: ";
     getline(cin, name);
 
-    cout << "- Enter vehicle no   : ";
-    getline(cin, vehicleNo);
+    do{
+        cout << "- Enter vehicle no   : ";
+        getline(cin, vehicleNo);
+
+        if(vehicleNo.empty()){
+            cout << "Vehicle number cannot be empty!" << endl;
+        }
+    }while(vehicleNo.empty());
 
     do{
-        cout << "- Enter start month (1-12): ";
+        cout << "- Enter start month (1-12): " << endl;
         cin >> startMonth;
 
         if (startMonth < 1 || startMonth > 12){
-           invalid();
-           cin >> startMonth;
+           cout << "Ivalid input, please select between (1-12) only: "<< endl;
+           cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }while(startMonth < 1 || startMonth > 12);
 
@@ -99,6 +104,7 @@ void applyPass(int &step, string &currID){
         if (startYear < currentYear || startYear > currentYear + 1) {
             cout << "Invalid start year. Only " << currentYear
                 << " or " << currentYear + 1 << " allowed.\n";
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     } while (startYear < currentYear || startYear > currentYear + 1);
 
@@ -108,6 +114,7 @@ void applyPass(int &step, string &currID){
 
         if (duration < 1 || duration > 3){
             cout << "Invalid duration. Only 1 to 3 months allowed.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }while(duration < 1 || duration > 3);
 
@@ -166,11 +173,17 @@ void renewPass(int &step, string &currID){
     cout << "Student ID   : " << currID << endl;
     cout << "Student Name : " << name << endl;
 
-    cin.ignore(1000, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    cout << "Enter vehicle number      : ";
-    getline(cin, vehicleNo);
+    do{
+        cout << "- Enter vehicle no   : ";
+        getline(cin, vehicleNo);
 
+        if(vehicleNo.empty()){
+            cout << "Vehicle number cannot be empty!" << endl;
+        }
+    }while(vehicleNo.empty());
+// here continue
     do{
         cout << "Enter start month (1-12): ";
         cin >> startMonth;

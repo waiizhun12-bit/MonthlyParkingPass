@@ -30,6 +30,7 @@ void admin_menu(int &step)
                 
             case 5:
                 step = 0;    // back to main menu
+                clearScreen();
                 return;
 
             default:

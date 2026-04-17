@@ -21,7 +21,7 @@ void generateMonthlyReport(int &step){
         cout << "Enter month (1-12): ";
         cin >> month;
 
-        if (month > 12 && month < 1){
+        if (month > 12 || month < 1){
             invalid();
         }
         cout << "Enter year: ";

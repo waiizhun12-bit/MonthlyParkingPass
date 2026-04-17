@@ -86,6 +86,8 @@ void verifyPayment(int &step){
 				return;
 		}
 
+		clearScreen();
+		
 		int select;
 		cout << "\n1. Confirm payment.\n";
 		cout << "2. Cancel verification.\n";

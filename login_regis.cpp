@@ -124,7 +124,7 @@ void regis(int &step, string &currID) {
 			if (fill == 3) {
 				cin >> p_num;
 				
-				if (p_num.size() >= 10 || p_num.size() <= 11) {
+				if (p_num.size() >= 10 && p_num.size() <= 11) {
 					fill++;
 				} else invalid();
 			} else 
