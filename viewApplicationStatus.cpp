@@ -65,9 +65,9 @@ void cancelPendingApplication(int &step, string &currID){
 
     bool found = false;
 
-    cout << "-----------------------------------------------------------" << endl;
-    cout << "-                 CANCEL PENDING APPLICATION              -" << endl;
-    cout << "-----------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "-               CANCEL PENDING APPLICATION             -" << endl;
+    cout << "--------------------------------------------------------" << endl;
 
 
     cout << "| " << setw(8) << left << "App ID"
@@ -75,7 +75,7 @@ void cancelPendingApplication(int &step, string &currID){
          << " | " << setw(15) << left << "Student Name"
          << " | " << setw(10) << left << "Status"
          << " |" << endl;
-    cout << "-----------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------" << endl;
 
 
     for (int i = 0; i < appCount; i++){
@@ -90,7 +90,7 @@ void cancelPendingApplication(int &step, string &currID){
         }
     }
 
-    cout << "-----------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------" << endl;
 
 
     if (!found){

@@ -71,6 +71,8 @@ void cancelPendingApplication (int &step, string &currID);
 void viewTransactionHistory (int &step, string &currID);
 void viewStatus (int &step, string &currID);
 void applyRenewPasses (int &step, string &currID);
+void makePayment (int &step, string &currID, string &name, string &vehicleNo,
+                 int startMonth, int startYear, int duration);
 void monthEndRenewalAlert (string &currID);
 
 #endif
