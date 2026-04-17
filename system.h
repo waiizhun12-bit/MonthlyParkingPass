@@ -6,7 +6,7 @@ using namespace std;
 
 struct Application {                                     // Fields for application.txt
         string appID, studentID, studentName, 
-        status, paymentMethod, vehicleNo;    
+        status, vehicleNo;    
         int startMonth;                                  // 1-12
         int startYear;                                   // e.g. 2024
         int duration;                                    // Duration 1-3 months  
@@ -19,7 +19,7 @@ struct STUDENT {                                         // Fields for student.t
 
 struct Payment{                                          // Fields for payment.txt
         string paymentID, studentID, 
-        paymentStatus, paymentDate, paymentMethod;
+        paymentStatus, paymentDate;
         double amount;
 };
 

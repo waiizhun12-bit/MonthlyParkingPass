@@ -35,6 +35,23 @@ void verifyPayment(int &step){
 			}
 		}
 		cout << "---------------------------------------------------------------------" << endl;
+		
+		cout << "1. Continue to verify payment\n";
+		cout << "2. Back to Admin Menu\n";
+		cout << "Enter your choice: " << endl;
+
+		int firstChoice;
+		cin >> firstChoice;
+
+		if (firstChoice == 2) {
+			step = -1;   // admin menu
+			clearScreen();
+			return;
+		}
+		if (firstChoice != 1) {
+			invalid();
+			return;
+		}
 
         string pid;
 		

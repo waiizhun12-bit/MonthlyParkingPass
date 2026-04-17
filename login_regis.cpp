@@ -79,7 +79,7 @@ void login (int &step, string &currID) {
 
 void regis(int &step, string &currID) {
 	
-	loadApplication();
+	loadStudent();
 
 	string name, nric, p_num, id, faculty, email, password;
 	int fill = 1;

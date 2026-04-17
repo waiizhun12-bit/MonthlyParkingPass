@@ -65,6 +65,10 @@ void applyPass(int &step, string &currID){
     string name, vehicleNo;
     int startMonth, startYear, duration;
 
+    time_t t = time(NULL);
+    tm *now = localtime(&t);
+    int currentYear = now->tm_year + 1900;
+
     cout << "---------------------------------------------------------------------" << endl;
     cout << "-                          APPLY NEW PASS                           -" << endl;
     cout << "---------------------------------------------------------------------" << endl;
@@ -78,31 +82,38 @@ void applyPass(int &step, string &currID){
     cout << "- Enter vehicle no   : ";
     getline(cin, vehicleNo);
 
-    cout << "- Enter start month (1-12): ";
-    cin >> startMonth;
+    do{
+        cout << "- Enter start month (1-12): ";
+        cin >> startMonth;
 
-    cout << "- Enter start year        : ";
-    cin >> startYear;
+        if (startMonth < 1 || startMonth > 12){
+           invalid();
+           cin >> startMonth;
+        }
+    }while(startMonth < 1 || startMonth > 12);
 
-    cout << "- Enter duration (1-3)    : ";
-    cin >> duration;
+    do{
+        cout << "- Enter start year        : ";
+        cin >> startYear;
 
-    if (startMonth < 1 || startMonth > 12){
-        cout << "Invalid month.\n";
-        cin.ignore(1000, '\n');
-        cin.get();
-        return;
-    }
+        if (startYear < currentYear || startYear > currentYear + 1) {
+            cout << "Invalid start year. Only " << currentYear
+                << " or " << currentYear + 1 << " allowed.\n";
+        }
+    } while (startYear < currentYear || startYear > currentYear + 1);
 
-    if (duration < 1 || duration > 3){
-        cout << "Invalid duration. Only 1 to 3 months allowed.\n";
-        cin.ignore(1000, '\n');
-        cin.get();
-        return;
-    }
+    do{
+        cout << "- Enter duration (1-3)    : ";
+        cin >> duration;
+
+        if (duration < 1 || duration > 3){
+            cout << "Invalid duration. Only 1 to 3 months allowed.\n";
+        }
+    }while(duration < 1 || duration > 3);
 
     makePayment(step, currID, name, vehicleNo, startMonth, startYear, duration);
 
+    return;
 }
 
 void renewPass(int &step, string &currID){
@@ -115,6 +126,10 @@ void renewPass(int &step, string &currID){
     int startMonth, startYear, duration;
     bool foundStudent = false;
     bool hasApproved = false;
+
+    time_t t = time(NULL);
+    tm *now = localtime(&t);
+    int currentYear = now->tm_year + 1900;
 
     for (int i = 0; i < studentCount; i++){
         if (studentList[i].id == currID){
@@ -156,30 +171,37 @@ void renewPass(int &step, string &currID){
     cout << "Enter vehicle number      : ";
     getline(cin, vehicleNo);
 
-    cout << "Enter start month (1-12)  : ";
-    cin >> startMonth;
+    do{
+        cout << "Enter start month (1-12): ";
+        cin >> startMonth;
 
-    cout << "Enter start year          : ";
-    cin >> startYear;
+        if (startMonth < 1 || startMonth > 12){
+           invalid();
+        }
+    }while(startMonth < 1 || startMonth > 12);
 
-    cout << "Enter duration (1-3)      : ";
-    cin >> duration;
+    do{
+        cout << "- Enter start year        : ";
+        cin >> startYear;
 
-    if (startMonth < 1 || startMonth > 12){
-        cout << "Invalid month.\n";
-        cin.ignore(1000, '\n');
-        cin.get();
-        return;
-    }
+        if (startYear < currentYear || startYear > currentYear + 1) {
+            cout << "Invalid start year. Only " << currentYear
+                << " or " << currentYear + 1 << " allowed.\n";
+        }
+    } while (startYear < currentYear || startYear > currentYear + 1);
 
-    if (duration < 1 || duration > 3){
-        cout << "Invalid duration. Only 1 to 3 months allowed.\n";
-        cin.ignore(1000, '\n');
-        cin.get();
-        return;
-    }
+    do{
+        cout << "- Enter duration (1-3)    : ";
+        cin >> duration;
+
+        if (duration < 1 || duration > 3){
+            cout << "Invalid duration. Only 1 to 3 months allowed.\n";
+        }
+    }while(duration < 1 || duration > 3);
 
     makePayment(step, currID, name, vehicleNo, startMonth, startYear, duration);
+
+    return;
 }
 
 void makePayment(int &step, string &currID, string &name, string &vehicleNo,
@@ -194,10 +216,11 @@ void makePayment(int &step, string &currID, string &name, string &vehicleNo,
 
     int choice;
     cout << "---------------------------------------------------------------------" << endl;
-    cout << "-                             PAYMENT     PAGE                      -" << endl;
+    cout << "-                           PAYMENT     PAGE                        -" << endl;
     cout << "---------------------------------------------------------------------" << endl;
     cout << "Name: " << name << endl;
     cout << "Month: " << startMonth << endl;
+    cout << "Vehicle Number: " << vehicleNo << endl;
     cout << "Year: " << startYear << endl;
     cout << "Duration: " << duration << endl;
     cout << "Total: RM " << total << endl;
@@ -227,9 +250,7 @@ void makePayment(int &step, string &currID, string &name, string &vehicleNo,
             cin.get();
             return;
         default:
-            cout << "Invalid payment method.\n";
-            cin.ignore(1000, '\n');
-            cin.get();
+            invalid();
             return;
     }
 
@@ -245,6 +266,7 @@ void makePayment(int &step, string &currID, string &name, string &vehicleNo,
     appList[appCount].appID = toString(appNo);
     appList[appCount].studentID = currID;
     appList[appCount].studentName = name;
+    appList[appCount].vehicleNo = vehicleNo;
     appList[appCount].status = "PENDING";
     appList[appCount].startMonth = startMonth;
     appList[appCount].startYear = startYear;
@@ -263,7 +285,7 @@ void makePayment(int &step, string &currID, string &name, string &vehicleNo,
     saveApplication();
     savePayment();
 
-    cout << "Payment success.\n";
+    cout << "Payment successfully with " << "RM " << total << endl; 
     cout << "Press Enter...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();

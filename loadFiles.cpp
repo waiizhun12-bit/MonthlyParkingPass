@@ -14,11 +14,10 @@ void saveApplication() {
                         << appList[i].studentID << ","
                         << appList[i].studentName << ","
                         << appList[i].status << ","
+                        << appList[i].vehicleNo << ","
                         << appList[i].startMonth << ","
                         << appList[i].startYear << ","
-                        << appList[i].duration << ","
-                        << appList[i].paymentMethod << ","
-                        << appList[i].vehicleNo << endl;
+                        << appList[i].duration << endl;
     }
     outApplicationFile.close();
 }
@@ -40,11 +39,10 @@ void loadApplication() {
         getline(ss, appList[appCount].studentID, ',');
         getline(ss, appList[appCount].studentName, ',');
         getline(ss, appList[appCount].status, ',');
+        getline(ss, appList[appCount].vehicleNo, ',');
         getline(ss, sm, ',');
         getline(ss, sy, ',');
         getline(ss, dur);
-        getline(ss, appList[appCount].paymentMethod, ',');
-        getline(ss, appList[appCount].vehicleNo, ',');
 
         appList[appCount].startMonth = sm.empty() ? 1 : toInteger(sm); // default to 1 if empty
         appList[appCount].startYear = sy.empty() ? 2026 : toInteger(sy); // default to 2026 if empty

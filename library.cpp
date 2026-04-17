@@ -64,8 +64,6 @@ void invalid (void) {
 	
 	cin.ignore();
 	cin.get();
-	
-	system("cls");
 }
 
 int toInteger(const string& s){

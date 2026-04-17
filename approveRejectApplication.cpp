@@ -68,6 +68,7 @@ void approveRejectApps(){
     while (true) {
         cout <<"Student ID (e.g., 2101234): ";
         cin >> sid;
+        
         if (sid.length() == 7) {
             string prefix = sid.substr(0, 2);
             if (prefix >= "21" && prefix <= "25") break;

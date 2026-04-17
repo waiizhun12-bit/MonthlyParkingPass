@@ -13,9 +13,9 @@ void viewStatus(int &step, string &currID) {        //  maybe need to replace cu
 
     bool found = false;
 
-    cout << "-----------------------------------------------------------------------------------------" << endl;
-    cout << "-                              APPLICATION       STATUS                                 -" << endl;
-    cout << "-----------------------------------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------------------" << endl;
+    cout << "-                              APPLICATION       STATUS                               -" << endl;
+    cout << "---------------------------------------------------------------------------------------" << endl;
     cout << "| " << setw(8)  << left << "App ID"
          << " | " << setw(10) << left << "Student ID"
          << " | " << setw(20) << left << "Student Name"
@@ -24,7 +24,7 @@ void viewStatus(int &step, string &currID) {        //  maybe need to replace cu
          << " | " << setw(6)  << left << "Year"
          << " | " << setw(8)  << left << "Duration"
          << " |" << endl;
-    cout << "-----------------------------------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------------------" << endl;
 
     for (int i = 0; i < appCount; i++) {
         if (appList[i].studentID == currID) {
@@ -33,7 +33,7 @@ void viewStatus(int &step, string &currID) {        //  maybe need to replace cu
          cout << "| " << setw(8)  << left << appList[i].appID
                  << " | " << setw(10) << left << appList[i].studentID
                  << " | " << setw(20) << left << appList[i].studentName
-                 << " | " << setw(10) << left << appList[i].status
+                 << " | " << setw(8) << left << appList[i].status
                  << " | " << setw(5)  << left << appList[i].startMonth
                  << " | " << setw(6)  << left << appList[i].startYear
                  << " | " << setw(8)  << left << appList[i].duration
@@ -41,7 +41,7 @@ void viewStatus(int &step, string &currID) {        //  maybe need to replace cu
         }
     }
 
-    cout << "-----------------------------------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------------------" << endl;
 
     if (!found) {
         cout << "No application record found for this student." << endl;
