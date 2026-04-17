@@ -35,30 +35,27 @@ void listPendingApplications(int &step){
                  << " |" << endl;
         }   
     }
-            cout << "---------------------------------------------------------------" << endl;
+        cout << "---------------------------------------------------------------" << endl;
+
     if (!has_pending){
         cout <<"No pending applications found." <<endl;
         cout << "\n1. Back to Admin Menu" << endl;
         cout << "\n2. Back to Main Menu" << endl;
-        cout << "\n3. Exit" << endl;
 
-    int go;
-    cin >> go;
+        int go;
+        cin >> go;
 
-    if (go == 2){
-        step = 0;   // Back to main menu
-        return;
-    }else if (go == 3){
-        step = 99;  // Exit 
-        return;
-    }
-
-    // Back to Admin menu
-        step = -1;
-        return;       
+        if (go == 2){
+            step = 0;   // Back to main menu
+            clearScreen();
+            return;
+        }else{
+            step = -1;
+            clearScreen();
+            return;       
+        }
     }
     approveRejectApps();
-   
 }
 
 void approveRejectApps(){

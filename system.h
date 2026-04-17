@@ -14,7 +14,7 @@ struct Application {                                     // Fields for applicati
 
 struct STUDENT {                                         // Fields for student.txt
         string name, nric, p_num, id, faculty,
-        email, password, vehicleNo;
+        email, password;
 };
 
 struct Payment{                                          // Fields for payment.txt
