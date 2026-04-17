@@ -72,8 +72,7 @@ void saveStudent() {
                     << studentList[i].id << ","
                     << studentList[i].faculty << ","
                     << studentList[i].email << ","
-                    << studentList[i].password << ","
-                    << studentList[i].vehicleNo << endl;   
+                    << studentList[i].password << endl;   
     }
     outStudentFile.close();
     cout << "Student data saved.\n";
@@ -96,7 +95,6 @@ void loadStudent(){
         getline(ss, studentList[studentCount].faculty, ',');
         getline(ss, studentList[studentCount].email, ',');
         getline(ss, studentList[studentCount].password, ',');
-        getline(ss, studentList[studentCount].vehicleNo, ',');
 
         studentCount++;
     }

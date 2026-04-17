@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <string>
 #include "system.h"
 using namespace std;
 
@@ -14,19 +15,31 @@ void generateMonthlyReport(int &step){
     int approved = 0, pending = 0, rejected = 0;
     int paid = 0, unpaid = 0;
 
-    do{
         cout << "---------------------------------------------------------------------" << endl;
         cout << "-                       GENERATE MONTHLY REPORT                     -"<< endl;
         cout << "---------------------------------------------------------------------" << endl;
-        cout << "Enter month (1-12): ";
-        cin >> month;
 
-        if (month > 12 || month < 1){
-            invalid();
-        }
-        cout << "Enter year: ";
-        cin >> year;
-    }while(month > 12 && month < 1);
+        do{
+            cout << "Enter month (1-12): ";
+            cin >> month;
+
+            if (month < 1 || month > 12){
+                cout << "Invalid month, please enter between 1 - 12: " << endl;
+            }
+
+        }while(month < 1 || month > 12);
+
+        do{
+            cout << "Enter year: ";
+            cin >> year;
+            
+            if (year != 2026){
+                cout << "Please enter current year: " << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        } while (year != 2026);
+        
+       
 
     for (int i = 0; i < appCount; i++){
         if (appList[i].startMonth == month && appList[i].startYear == year){
