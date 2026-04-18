@@ -28,14 +28,14 @@ void studentMenu(int &step, string &currID) {
 
         switch (choice) {
                 case 1: 
-                        //viewProfile(); 
+                        viewProfile(step, currID); 
                         break;
                 case 2: 
-                        //updateProfile(); 
+                        updateProfile(step,currID); 
                         break;
 
                 case 3:
-                        // resetPasswordStudent(); 
+                        resetPassword(step, currID); 
                         break;
 
                 case 4: 

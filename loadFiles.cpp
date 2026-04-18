@@ -75,7 +75,7 @@ void saveStudent() {
                     << studentList[i].password << endl;   
     }
     outStudentFile.close();
-    cout << "Student data saved.\n";
+    cout << "\nStudent data saved.";
 }
 
 void loadStudent(){

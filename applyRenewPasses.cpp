@@ -108,7 +108,7 @@ void applyPass(int &step, string &currID){
     }while(vehicleNo.empty());
 
     do{
-        cout << "- Enter start month (1-12): " << endl;
+        cout << "- Enter start month (1-12): ";
         cin >> startMonth;
 
         if (startMonth < 1 || startMonth > 12){

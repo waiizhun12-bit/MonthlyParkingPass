@@ -66,6 +66,9 @@ void listPendingApplications (int &step);
 void verifyPayment (int &step);
 
 void studentMenu (int &step, string &currID);
+void resetPassword(int &step, string &currID);
+void viewProfile(int &step, string &currID);
+void updateProfile(int &step, string &currID); 
 void passValidityChecker (int &step, string &currID);
 void cancelPendingApplication (int &step, string &currID);
 void viewTransactionHistory (int &step, string &currID);
