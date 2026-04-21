@@ -7,7 +7,7 @@ int admin_dashboard();
 
 void admin_menu(int &step)   
 {
-    while (step == 3) {
+    while (step == -1) {
         int selection = admin_dashboard();   
 
         switch (selection)
@@ -16,20 +16,25 @@ void admin_menu(int &step)
                 listPendingApplications(step);
                 break;
 
-            case 3:
-                monthEndAlter(step);
+            case 2:
+                verifyPayment(step);
                 break;
 
-            /*case 4:
-                manageStudents();
-                break;*/
-
+            case 3:
+                generateMonthlyReport(step);
+                break;
+            
             case 4:
+                generateSummaryReport(step);
+                break;
+                
+            case 5:
                 step = 0;    // back to main menu
+                clearScreen();
                 return;
 
             default:
-                cout << "Invalid choice.\n";
+                invalid();
                 break;
         }
     }
@@ -42,10 +47,10 @@ int admin_dashboard()
     cout <<"---------------------------------------"<<endl;
     cout <<"-           ADMIN   DASHBOARD         -"<<endl;
     cout <<"---------------------------------------"<<endl;
-    cout <<"- 1. Approve & Reject Applications    -"<<endl;
-    cout <<"- 2. Generate Monthly Report          -"<<endl;
-    cout <<"- 3. Month End Alert                  -"<<endl;
-    cout <<"- 4. Manage Students                  -"<<endl;
+    cout <<"- 1. Approve / Reject Applications    -"<<endl;
+    cout <<"- 2. Verify Payment                   -"<<endl;
+    cout <<"- 3. Generate Monthly Report          -"<<endl;
+    cout <<"- 4. Generate Summary Report          -"<<endl;
     cout <<"- 5. Exit                             -"<<endl;
     cout <<"---------------------------------------"<<endl;
     cout <<"Enter your choice: ";

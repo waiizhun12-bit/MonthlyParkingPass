@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
+#include <sstream>
 #include <limits>
 #include "system.h"
 using namespace std;
@@ -9,7 +11,7 @@ Application appList[MAX_APPLICATIONS];
 int appCount = 0;
 int appNo = 1;
 
-Student studentList[MAX_STUDENT];
+STUDENT studentList[MAX_STUDENT];
 int studentCount = 0;
 int userNo = 1;
 
@@ -17,6 +19,12 @@ Payment payList[MAX_PAYMENTS];
 int payCount = 0;
 int payNo =1;
 
+string currID = "";
+
+void clearScreen(){
+
+	system("cls");
+}
 void split (void) {
 	cout << "--------------------------------------------------" << endl; 
 }
@@ -45,7 +53,7 @@ int option (string array[], int size) {
 	cin >> opt;
 	
 	if (opt > 0 && opt <= size) {
-		//system("cls");
+		system("cls");
 		return opt;
 	} else return 0;
 }
@@ -56,6 +64,24 @@ void invalid (void) {
 	
 	cin.ignore();
 	cin.get();
-	
-	//system("cls");
+}
+
+int toInteger(const string& s){
+	stringstream ss(s);
+	int value = 0;
+	ss >> value;
+	return value;	
+}
+
+string toString(int value){
+	stringstream ss;
+	ss << value;
+	return ss.str();
+}
+
+double toDouble(const string& str) {
+    stringstream ss(str);
+    double result;
+    ss >> result;
+    return result;
 }
