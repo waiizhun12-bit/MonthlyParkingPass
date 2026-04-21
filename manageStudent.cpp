@@ -1,4 +1,4 @@
-/* #include <iostream>
+#include <iostream>
 #include <string>
 #include "system.h"
 using namespace std;
@@ -113,4 +113,3 @@ void resetStudentPassword() {
         cout << "Student not found.\n";
     }
 }
-*/

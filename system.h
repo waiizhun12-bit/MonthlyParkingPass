@@ -46,7 +46,6 @@ void regis (int &step); // Register
 int toInteger(const string& s);
 string toString(int value);
 
-<<<<<<< HEAD
 void admin_menu(int &step);
 void loadStudent();
 void saveStudent();
@@ -56,15 +55,5 @@ void listPendingApplications(int &step);
 void monthEndAlter(int &step);
 void studentAuthMenu(int &step);
 void manageStudent();
-=======
-void admin_menu(int &step);                     // Show admin menu
-void loadStudent();                             // Load student.txt
-void saveStudent();                             // Save student.txt
-void loadApplication();                         // Load application.txt
-void saveApplication();                         // Save application.txt
-void listPendingApplications(int &step);        // Show pending applications
-void monthEndAlter(int &step);                  // Show expire passes, and send alert to student
-void studentAuthMenu(int &step);                
->>>>>>> b232db939a58cea1723f0d8ec742a642fb1782cc
 
 #endif
